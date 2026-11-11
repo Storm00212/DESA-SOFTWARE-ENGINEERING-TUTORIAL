@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From your laptop to the internet – DESA tech session</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--on:#fff;--paper:#f5f8f7;--card:#fff;--ink:#12302c;--muted:#52665f;--line:#d5e2de;--brand:#0d9488;--deep:#0f766e;--tint:#e3f4f1;--warn:#be123c;--warn-t:#ffe9ee;--amber:#b45309;--amber-t:#fdf1dc;--rail:200px}
+@media (prefers-color-scheme:dark){:root{--on:#06201c;--paper:#0e1f1c;--card:#142a26;--ink:#e6f2ef;--muted:#9bb5ae;--line:#254540;--brand:#2dd4bf;--deep:#5eead4;--tint:#17413b;--warn:#fda4b4;--warn-t:#3d1a24;--amber:#f5c26b;--amber-t:#3a2c12}}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;margin-bottom:.4em}
+h3{font-size:1.12rem;font-weight:700;margin-bottom:.3em}
+p{margin:.3em 0 .8em;max-width:70ch}b{font-weight:600}a{color:var(--deep)}
+code,.k{font:600 .88em "Cascadia Mono",Consolas,monospace;background:var(--tint);color:var(--deep);padding:1px 6px;border-radius:5px}
+.bar{position:fixed;top:0;left:0;right:0;height:4px;z-index:20;background:transparent}.bar i{display:block;height:100%;width:0;background:var(--brand);transition:width .2s}
+nav{position:fixed;inset:0 auto 0 0;width:var(--rail);padding:26px 18px;border-right:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column;gap:6px;z-index:5}
+nav .brand{font:700 1rem "Bricolage Grotesque",sans-serif;color:var(--deep);margin-bottom:16px;line-height:1.2}
+nav a{color:var(--muted);text-decoration:none;font-size:.93rem;padding:6px 10px;border-left:3px solid transparent;border-radius:0 6px 6px 0}
+nav a.on{color:var(--ink);border-left-color:var(--brand);background:var(--tint);font-weight:600}
+nav small{margin-top:auto;color:var(--muted);font-size:.78rem}
+nav a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+main{margin-left:var(--rail)}
+.slide{min-height:100vh;scroll-snap-align:start;padding:54px clamp(20px,4.5vw,64px);display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid var(--line)}
+.tag{align-self:flex-start;font-size:.85rem;font-weight:600;color:var(--deep);background:var(--tint);padding:3px 12px;border-radius:99px;margin-bottom:12px}
+.lead{font-size:1.2rem;color:var(--muted)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:12px 0}
+.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:12px;padding:16px 20px}
+.card.w{border-top-color:var(--warn)}.card.a{border-top-color:var(--amber)}.card h3{margin-top:0}
+.say{display:block;margin:8px 0;padding:8px 12px;border-radius:8px;background:var(--tint);font-size:.95rem}
+.say::before{content:"In plain words: ";font-weight:600;color:var(--deep)}
+.eng{display:block;margin:8px 0;padding:8px 12px;border-radius:8px;background:var(--amber-t);font-size:.95rem}
+.eng::before{content:"Like in engineering: ";font-weight:600;color:var(--amber)}
+.pro::before{content:"Professional: ";font-weight:600}
+.callout{border-left:4px solid var(--amber);background:var(--amber-t);padding:10px 16px;border-radius:0 10px 10px 0;margin:12px 0;max-width:80ch}
+.callout.bad{border-color:var(--warn);background:var(--warn-t)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--tint);color:var(--deep);font-weight:600}tr:last-child td{border-bottom:0}td:first-child{font-weight:600}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:12px 0;display:grid;gap:10px}
+ol.steps>li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px 12px 56px;position:relative}
+ol.steps>li::before{content:counter(s);position:absolute;left:14px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--brand);color:var(--on);font-weight:700;display:grid;place-items:center}
+ul{margin:.3em 0;padding-left:1.2em}li{margin:.25em 0}
+.hint{font-size:.88rem;color:var(--muted);margin-top:10px}
+.btn,.seg button,.nv2 button,.lab button.act{font:inherit;font-weight:600;padding:7px 16px;border-radius:99px;border:1px solid var(--brand);background:var(--card);color:var(--deep);cursor:pointer}
+.btn.p,.seg button[aria-pressed=true],.lab button.act.p{background:var(--brand);color:var(--on)}
+.btn:disabled,.nv2 button:disabled{opacity:.4;cursor:default}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+/* diagrams */
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin:12px 0}
+.node{flex:1 1 150px;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.92rem;transition:.2s}
+.node b{display:block;font-size:1rem}
+.node.on{border-color:var(--brand);background:var(--tint);transform:translateY(-3px)}
+.arr{align-self:center;font-size:1.4rem;color:var(--brand);font-weight:700}
+.arr small{display:block;font:600 .7rem "Cascadia Mono",Consolas,monospace;color:var(--deep);text-align:center}
+.msg{min-height:84px;background:var(--card);border:1px dashed var(--brand);border-radius:12px;padding:12px 16px;margin:8px 0}
+.msg .dir{display:inline-block;background:var(--brand);color:var(--on);font-weight:700;font-size:.82rem;padding:1px 10px;border-radius:99px;margin-right:8px}
+.nv2{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.nv2 .ct{color:var(--muted);font-size:.9rem;font-weight:600}
+.j{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.j button{flex:1 1 110px;font:inherit;font-weight:700;padding:12px 8px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;line-height:1.2}
+.j button small{display:block;font-weight:500;color:var(--muted);font-size:.78rem}
+.j button[aria-pressed=true]{border-color:var(--brand);background:var(--tint)}
+.j .arr{flex:0 0 auto}
+.code{background:#0c0c0c;color:#d4d4d4;border-radius:8px;padding:8px 12px;font:13px/1.5 "Cascadia Mono",Consolas,monospace;white-space:pre;overflow-x:auto;margin:8px 0}
+/* terminals */
+.term{background:#0c0c0c;color:#d4d4d4;border-radius:10px;font:14px/1.55 "Cascadia Mono",Consolas,monospace;overflow:hidden;margin:10px 0;max-width:840px;box-shadow:0 4px 18px #0003}
+.term .th{background:#2b2b2b;color:#bbb;padding:6px 12px;font-size:.8rem}.term .tb{padding:10px 14px;overflow-x:auto}
+.term .l{white-space:pre;display:flex;gap:10px;align-items:baseline}
+.term .c .pr{color:#4ec9b0}.term .o{color:#9aa0a6}.term .m{color:#6a9955;font-style:italic}
+.term .cp{margin-left:auto;background:#333;color:#ddd;border:0;border-radius:5px;padding:1px 8px;font:12px "Instrument Sans",sans-serif;cursor:pointer}
+.term .cp:hover{background:#0d9488;color:#fff}
+/* desktop simulator */
+.desk{position:relative;border-radius:14px 14px 0 0;min-height:400px;padding:22px 16px 62px;background:radial-gradient(900px 400px at 15% 10%,#2dd4bf88,transparent 60%),radial-gradient(800px 500px at 90% 90%,#2563eb99,transparent 60%),linear-gradient(135deg,#0b3b54,#12495f 50%,#1b2f6b);display:flex;justify-content:center;align-items:flex-start;overflow:hidden}
+.win{width:min(580px,100%);background:#f3f3f3;color:#1b1b1b;border-radius:8px;box-shadow:0 12px 40px #0007;font:14px/1.45 "Segoe UI","Instrument Sans",system-ui,sans-serif;overflow:hidden}
+.win .tb2{display:flex;justify-content:space-between;background:#fff;padding:8px 12px;font-size:.85rem;border-bottom:1px solid #ddd}
+.win .bd{padding:16px 20px;min-height:220px;background:#fff}
+.win .bd h4{margin:0 0 6px;font-size:1.1rem;font-weight:600;color:#003e73;font-family:inherit}
+.win .bd p{margin:.3em 0 .6em;max-width:none;color:#333}
+.win .ft{display:flex;justify-content:flex-end;gap:8px;padding:10px 14px;background:#f0f0f0;border-top:1px solid #ddd}
+.win .ft span{min-width:80px;text-align:center;padding:4px 12px;border:1px solid #adadad;background:#e1e1e1;border-radius:3px;font-size:.86rem}
+.win .ft span.df{border-color:#0067c0;background:#cce4f7;box-shadow:0 0 0 2px #0d948888}
+.opt{display:flex;align-items:center;padding:5px 8px;border-radius:6px;margin:3px 0;border:2px solid transparent;color:#222}
+.opt small{display:block;color:#666;font-size:.78rem}
+.opt.hl{border-color:#0d9488;background:#e3f4f1}.opt.hl::after{content:"← choose this";margin-left:auto;font-size:.75rem;font-weight:700;color:#0f766e;white-space:nowrap;padding-left:10px}
+.bx{flex:none;width:16px;height:16px;border:1.5px solid #555;background:#fff;border-radius:3px;position:relative;margin-right:10px}
+.bx.r{border-radius:50%}.bx.on::after{content:"";position:absolute;inset:3px;background:#0067c0;border-radius:2px}.bx.r.on::after{border-radius:50%}
+.lb{border:1px solid #999;background:#fff;margin:4px 0 8px;font-size:.84rem}.lb div{padding:2px 8px}.lb div.hl{background:#d6f3ee;outline:2px solid #0d9488;outline-offset:-2px;font-weight:600}
+.task{position:absolute;left:0;right:0;bottom:0;height:44px;background:#1c1c1ccc;backdrop-filter:blur(8px);display:flex;align-items:center;gap:12px;padding:0 14px;color:#eee;font-size:.8rem}
+.task .sq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:20px}.task .sq i{height:9px;background:#4cc2ff;display:block}
+.task .sp{background:#333;padding:3px 16px;border-radius:99px;color:#aaa}.task .clk{margin-left:auto;text-align:right;font-size:.72rem;line-height:1.2}
+.cap{background:var(--card);border:1px solid var(--line);border-top:0;padding:12px 18px;font-size:.95rem}
+.nv{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--tint);border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;padding:8px 12px;font-size:.9rem;color:var(--deep);font-weight:600}
+.nv button{font:inherit;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--brand);background:var(--card);color:var(--deep);cursor:pointer}.nv button:disabled{opacity:.4;cursor:default}
+/* VS Code mock */
+.vsc{background:#1e1e1e;color:#ccc;border-radius:10px;overflow:hidden;font:13px/1.5 "Segoe UI","Instrument Sans",sans-serif;box-shadow:0 8px 28px #0004;max-width:860px}
+.vsc button.hs{font:inherit;color:inherit;background:transparent;border:2px solid transparent;cursor:pointer;text-align:left;padding:0;display:block;width:100%}
+.vsc button.hs:hover{border-color:#2dd4bf88}.vsc button.hs.sel{border-color:#2dd4bf;background:#2dd4bf1f}
+.vsc .ttl{background:#3c3c3c;text-align:center;padding:4px;font-size:.8rem}
+.vsc .vb{display:grid;grid-template-columns:44px 170px 1fr;min-height:300px}
+.vsc .act{background:#333;display:flex;flex-direction:column;gap:2px;padding-top:4px}.vsc .act button{text-align:center;padding:8px 0;font-size:1.1rem}
+.vsc .side{background:#252526;padding:8px}.vsc .side div{padding:1px 6px}.vsc .side .d{color:#9cdcfe}
+.vsc .mid{display:flex;flex-direction:column;min-width:0}
+.vsc .tabs{background:#2d2d2d;padding:6px 14px;font-size:.82rem;border-top:2px solid #0d9488;width:max-content}
+.vsc .ed{padding:8px 0;flex:1;font:12.5px/1.55 "Cascadia Mono",Consolas,monospace;white-space:pre;overflow-x:auto}
+.vsc .tm{background:#181818;border-top:1px solid #444;padding:6px 12px!important;font:12.5px/1.5 "Cascadia Mono",Consolas,monospace;white-space:pre;color:#4ec9b0}
+.vsc .sb{background:#0d9488;color:#fff;padding:2px 12px!important;font-size:.78rem}
+.vsc .t1{color:#569cd6}.vsc .t2{color:#ce9178}.vsc .t3{color:#9cdcfe}.vsc .ln{color:#6e7681;display:inline-block;width:2.4em;text-align:right;margin-right:1em}
+.hsinfo{margin-top:10px;max-width:860px}
+/* labs */
+.lab{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0}
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}
+.zone{background:var(--paper);border:2px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;min-height:110px;transition:.2s}
+.zone h4{font-size:.92rem;margin-bottom:4px}.zone.lit{border-color:var(--brand);background:var(--tint)}
+.zone .ci{font:12px "Cascadia Mono",Consolas,monospace;display:flex;justify-content:space-between;gap:6px;align-items:center;margin:2px 0}
+.zone .ci button{font:inherit;font-size:11px;border:1px solid var(--brand);background:var(--card);color:var(--deep);border-radius:6px;cursor:pointer;padding:0 6px}
+.pw{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+textarea.src{width:100%;min-height:330px;background:#0c0c0c;color:#d4d4d4;border:1px solid #333;border-radius:10px;padding:10px;font:13px/1.5 "Cascadia Mono",Consolas,monospace;resize:vertical}
+iframe.pv{width:100%;min-height:330px;height:100%;background:#fff;border:1px solid var(--line);border-radius:10px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:8px 0}
+.q button{display:block;width:100%;text-align:left;font:inherit;padding:7px 12px;margin:4px 0;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);cursor:pointer}
+.q button.ok{border-color:var(--brand);background:var(--tint)}.q button.no{border-color:var(--warn);background:var(--warn-t)}
+.q .fb{font-size:.9rem;color:var(--muted);margin-top:4px}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin:6px 0}summary{cursor:pointer;font-weight:600}
+.tmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:10px 0}
+.zn{background:var(--card);border:2px dashed var(--line);border-radius:12px;padding:10px 12px}
+.zn h4{font-size:.95rem;margin-bottom:6px;color:var(--deep)}
+.zn button,.chip{font:inherit;font-weight:600;padding:5px 14px;margin:3px 4px 3px 0;border-radius:99px;border:1px solid var(--brand);background:var(--card);color:var(--deep);cursor:pointer}
+.zn button[aria-pressed=true]{background:var(--brand);color:var(--on)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chain svg{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;margin:8px 0;overflow-x:auto}
+.tree{display:flex;flex-direction:column;gap:6px}
+.tree button{font:inherit;text-align:left;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tree button[aria-pressed=true]{border-color:var(--brand);background:var(--tint);font-weight:600}
+.tree .l1{margin-left:18px}.tree .l2{margin-left:36px}
+.mock{border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--card)}
+.mock .mb{border:2px dashed transparent;border-radius:8px;padding:6px 8px;margin:4px 0}
+.mock .mb.hi,.mock .mc.hi{border-color:var(--brand);background:var(--tint)}
+.mock .mc{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:4px 0}
+.mock .mc button{font:inherit;font-weight:600;padding:2px 12px;border-radius:99px;border:1px solid var(--brand);background:var(--card);color:var(--deep);cursor:pointer}
+.mock .mc button.p{background:var(--brand);color:var(--on)}
+.dbt{border:2px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--card);overflow-x:auto}
+.dbt.used{border-color:var(--brand);background:var(--tint)}
+.dbt h4{font-size:.92rem;margin-bottom:4px;color:var(--deep)}
+.dbt table{min-width:0;font-size:.82rem}.dbt th,.dbt td{padding:3px 8px}.dbt th small{display:block;font-weight:500;color:var(--muted);font-size:.68rem}
+.code small{color:#6a9955}
+@media (max-width:860px){:root{--rail:0px}nav{position:static;width:auto;flex-direction:row;flex-wrap:wrap;border:0;border-bottom:1px solid var(--line);padding:10px}nav .brand,nav small{display:none}main{margin-left:0}.slide{min-height:auto;padding:34px 16px}.zones,.pw,.two{grid-template-columns:1fr 1fr}.vsc .vb{grid-template-columns:40px 1fr}.vsc .side{display:none}}
+@media (max-width:560px){.zones,.pw,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bar"><i id="barfill"></i></div>
+<nav aria-label="Sections"><div class="brand">Laptop to internet</div></nav>
+<main>
+
+<!-- ============ 1 WELCOME ============ -->
+<section class="slide" data-sec="1 Welcome" id="s1">
+  <span class="tag">DESA tech session · for first-year engineering students</span>
+  <h1>From your laptop to the internet</h1>
+  <p class="lead">Install a code editor, save your work with Git, store it on GitHub, and put a web page online that anyone can open. No coding experience needed.</p>
+  <p><b>Paul Muyali</b> · Digital Systems and Technology, DeKUT-HRIC · 4th-year BSc Electrical and Electronics Engineering</p>
+  <div class="grid">
+    <div class="card"><h3>You will leave with</h3><ul><li>A code editor set up on your laptop</li><li>A GitHub account and your first project on it</li><li>A live web link you can send to anyone</li></ul></div>
+    <div class="card a"><h3>How this works</h3><p>Every idea comes in three layers: what it is, what it means in plain words, and what it is like in engineering. You will also click, type and break things. That is the point.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="1 Welcome" id="s1b">
+  <h2>Software engineering is engineering with code</h2>
+  <p class="pro">The disciplined process of planning, building, testing, releasing and maintaining software.</p>
+  <span class="say">Making programs the way engineers make bridges or circuits: plan first, build in stages, check it works, hand it over, keep it running.</span>
+  <div class="tw"><table><thead><tr><th>In an engineering project</th><th>In a software project</th><th>Tool you will meet today</th></tr></thead><tbody>
+    <tr><td>Workshop or CAD software</td><td>A place to write the code</td><td>Visual Studio Code</td></tr>
+    <tr><td>Drawing revisions: Rev A, Rev B, Rev C</td><td>Saved versions, each with a note</td><td>Git</td></tr>
+    <tr><td>Shared project drive or document store</td><td>Online home for the project and its history</td><td>GitHub</td></tr>
+    <tr><td>Commissioning: handing the work over to site</td><td>Deployment: putting it where users can reach it</td><td>GitHub Pages</td></tr>
+    <tr><td>The client uses the finished system</td><td>Anyone opens your link in a browser</td><td>Any browser</td></tr>
+  </tbody></table></div>
+</section>
+
+<!-- ============ 2 JOURNEY ============ -->
+<section class="slide" data-sec="2 The journey" id="s2">
+  <span class="tag">The big picture</span>
+  <h2>The whole journey in six stops</h2>
+  <p>Click each stop. Today you will travel all of it.</p>
+  <div class="j" id="journey"></div>
+  <div class="card" id="jinfo" aria-live="polite"></div>
+  <p class="hint">Everything today is free, and every tool has a free plan or is free for students.</p>
+</section>
+
+<!-- ============ 3 HOW THE WEB WORKS ============ -->
+<section class="slide" data-sec="3 How the web works" id="s3a">
+  <span class="tag">Section 3 · Part 1 of 3</span>
+  <h2>What happens when you open a website</h2>
+  <p class="pro">A browser (the client) sends a request to a server and renders the files it receives.</p>
+  <span class="say">Your browser asks a faraway computer for the page. That computer, called a server, sends the files back.</span>
+  <div id="web-st"></div>
+  <p class="hint">Press <b>Next step</b> to follow one visit.</p>
+</section>
+
+<section class="slide" data-sec="3 How the web works" id="s3b">
+  <span class="tag">Section 3 · Part 2 of 3</span>
+  <h2>Every web page is three kinds of file</h2>
+  <div class="grid">
+    <div class="card"><h3>HTML: the structure</h3><p>What is on the page: headings, paragraphs, buttons, images.</p><span class="say">The walls and rooms of a house.</span><div class="code">&lt;h1&gt;Hello&lt;/h1&gt;</div></div>
+    <div class="card a"><h3>CSS: the look</h3><p>Colours, fonts, spacing and layout.</p><span class="say">Paint and decoration.</span><div class="code">h1 { color: teal; }</div></div>
+    <div class="card w"><h3>JavaScript: the behaviour</h3><p>What happens when you click, type or scroll.</p><span class="say">The wiring and switches.</span><div class="code">alert("Hi!");</div></div>
+  </div>
+  <span class="eng">HTML is the circuit layout, CSS is the casing and labels, JavaScript is the control logic that decides what happens when a button is pressed.</span>
+</section>
+
+<section class="slide" data-sec="3 How the web works" id="s3c">
+  <span class="tag">Section 3 · Part 3 of 3 · Try it</span>
+  <h2>Your first web page, live</h2>
+  <p>Type in the left box and watch the page change on the right. Use the buttons to add looks and behaviour. This is the page you will publish later.</p>
+  <div class="seg" id="pg-seg"><button type="button" data-p="0" aria-pressed="true">1 Structure only</button><button type="button" data-p="1" aria-pressed="false">2 Add style</button><button type="button" data-p="2" aria-pressed="false">3 Add behaviour</button><button type="button" class="btn" id="pg-copy">Copy this page</button></div>
+  <div class="pw"><textarea class="src" id="pg-src" spellcheck="false" aria-label="Page code"></textarea><iframe class="pv" id="pg-pv" sandbox="allow-scripts" title="Live preview"></iframe></div>
+  <p class="hint">Try changing the name and the colour. Mistakes cannot break anything here.</p>
+</section>
+
+<!-- ============ 4 VS CODE ============ -->
+<section class="slide" data-sec="4 VS Code" id="s4a">
+  <span class="tag">Section 4 · Part 1 of 3</span>
+  <h2>Install Visual Studio Code</h2>
+  <p class="pro">A free, extensible source-code editor with a built-in terminal and Git support.</p>
+  <span class="say">A smart notepad for code. It colours your words, spots typing mistakes, and has a command window built in.</span>
+  <ol class="steps">
+    <li><b>Download.</b> Go to <b>code.visualstudio.com</b> and press Download for Windows. Type the address yourself.</li>
+    <li><b>Run the installer.</b> Practise on the screens below first.
+      <div class="sim" id="sim-vs"></div></li>
+    <li><b>Open it</b> from the Start menu and choose a colour theme.</li>
+  </ol>
+</section>
+
+<section class="slide" data-sec="4 VS Code" id="s4b">
+  <span class="tag">Section 4 · Part 2 of 3 · Click around</span>
+  <h2>A tour of the VS Code window</h2>
+  <p>Click any part of this picture to learn what it does.</p>
+  <div class="vsc" id="vsc">
+    <button class="hs ttl" data-k="palette" type="button">index.html — my-first-page — Visual Studio Code</button>
+    <div class="vb">
+      <div class="act">
+        <button class="hs" data-k="explorer" type="button" title="Explorer">▤</button>
+        <button class="hs" data-k="git" type="button" title="Source Control">⑂</button>
+        <button class="hs" data-k="ext" type="button" title="Extensions">▦</button>
+      </div>
+      <button class="hs side" data-k="explorer" type="button"><div><b>MY-FIRST-PAGE</b></div><div class="d">▸ images</div><div>index.html</div><div>style.css</div></button>
+      <div class="mid">
+        <div class="tabs">index.html</div>
+        <button class="hs ed" data-k="editor" type="button"><span class="ln">1</span><span class="t1">&lt;h1&gt;</span>Hello, DESA!<span class="t1">&lt;/h1&gt;</span>
+<span class="ln">2</span><span class="t1">&lt;p&gt;</span>My first web page.<span class="t1">&lt;/p&gt;</span>
+<span class="ln">3</span></button>
+        <button class="hs tm" data-k="terminal" type="button">TERMINAL
+$ git status</button>
+      </div>
+    </div>
+    <button class="hs sb" data-k="status" type="button">⑂ main &nbsp;&nbsp; Ln 3, Col 1 &nbsp;&nbsp; HTML</button>
+  </div>
+  <div class="card hsinfo" id="vsinfo" aria-live="polite"></div>
+</section>
+
+<section class="slide" data-sec="4 VS Code" id="s4c">
+  <span class="tag">Section 4 · Part 3 of 3</span>
+  <h2>Make your first project folder</h2>
+  <ol class="steps">
+    <li><b>Make a folder</b> called <code>my-first-page</code> inside a folder named <code>dev</code> in your user folder. Avoid Desktop and Documents, because OneDrive syncs them and slows projects down.</li>
+    <li><b>Open it in VS Code:</b> File → Open Folder, pick <code>my-first-page</code>, and choose “Yes, I trust the authors”.</li>
+    <li><b>Make a file:</b> in the Explorer press the New File icon and name it <code>index.html</code>. The name matters later, because websites look for a file called index.html first.</li>
+    <li><b>Fill it quickly:</b> type <code>!</code> then press Tab. VS Code writes the standard page skeleton for you. Or paste the page from the live editor.</li>
+    <li><b>Save</b> with Ctrl + S. Then find the file in File Explorer and double-click it. It opens in your browser. That is your page, still only on your laptop.</li>
+  </ol>
+  <div class="callout">Optional: install the <b>Live Server</b> extension. Right-click index.html and choose “Open with Live Server” to see changes the moment you save.</div>
+</section>
+
+<!-- ============ 5 GIT AND GITHUB ============ -->
+<section class="slide" data-sec="5 Git and GitHub" id="s5a">
+  <span class="tag">Section 5 · Part 1 of 5</span>
+  <h2>Git and GitHub are two different things</h2>
+  <div class="grid">
+    <div class="card"><h3>Git</h3><p class="pro">A version control system that records every change to your files.</p><span class="say">A save history for your project. Each save-point has a note, and you can go back to any of them.</span><span class="eng">Drawing revisions: Rev A, B, C, each with a revision note.</span></div>
+    <div class="card a"><h3>GitHub</h3><p class="pro">A website that stores Git projects online and helps people collaborate.</p><span class="say">An online copy of your project and its history. Safe if your laptop is lost, and easy to share.</span><span class="eng">The shared project drive everyone can reach.</span></div>
+  </div>
+  <h3 style="margin-top:14px">Where your work lives</h3>
+  <div class="flow">
+    <div class="node"><b>Working folder</b>The files you edit</div><div class="arr"><small>git add</small>→</div>
+    <div class="node"><b>Staging area</b>Changes chosen for the next save</div><div class="arr"><small>git commit</small>→</div>
+    <div class="node"><b>Local history</b>Your save-points on the laptop</div><div class="arr"><small>git push</small>→</div>
+    <div class="node"><b>GitHub</b>Online copy</div>
+  </div>
+  <span class="say">Think of packing a box: pick the items (add), seal the box and label it (commit), then post it (push).</span>
+</section>
+
+<section class="slide" data-sec="5 Git and GitHub" id="s5b">
+  <span class="tag">Section 5 · Part 2 of 5</span>
+  <h2>Install Git and meet Git Bash</h2>
+  <p>Git for Windows comes with <b>Git Bash</b>, a terminal where you type commands. A terminal is a window where you give typed instructions instead of clicking.</p>
+  <ol class="steps">
+    <li><b>Download</b> from <b>git-scm.com</b>: Windows, then the 64-bit Git for Windows Setup.</li>
+    <li><b>Run it.</b> Press Next on screens not shown here. These are the ones that matter:
+      <div class="sim" id="sim-git"></div></li>
+    <li><b>Open Git Bash</b> from the Start menu and tell Git who you are, once:
+      <div id="t-cfg"></div></li>
+  </ol>
+</section>
+
+<section class="slide" data-sec="5 Git and GitHub" id="s5c">
+  <span class="tag">Section 5 · Part 3 of 5 · Practice lab</span>
+  <h2>Git practice lab: pack, seal, post</h2>
+  <p>Press the buttons in a sensible order. Try them in the wrong order too, and read what Git says. After a few commits, press <b>Restore</b> next to an old save-point.</p>
+  <div class="lab" id="git-lab"></div>
+</section>
+
+<section class="slide" data-sec="5 Git and GitHub" id="s5d">
+  <span class="tag">Section 5 · Part 4 of 5</span>
+  <h2>Create a GitHub account and send your page up</h2>
+  <ol class="steps">
+    <li><b>Sign up</b> at <b>github.com</b>. Pick a username you would show an employer. Verify your email with the code GitHub sends.</li>
+    <li><b>Turn on two-factor sign-in:</b> profile photo → Settings → Password and authentication. Use an authenticator app and save the recovery codes.</li>
+    <li><b>Create a repository</b> (a project folder on GitHub): the <b>+</b> at the top right → New repository. Name it <code>my-first-page</code>, choose <b>Public</b>, and leave the README option off.</li>
+    <li><b>Send your files up</b> from Git Bash. Replace <code>YOUR-USERNAME</code>. The first push opens a browser window: press Authorize.
+      <div id="t-push"></div></li>
+    <li><b>Refresh the repository page.</b> Your files are online, with the commit note beside them.</li>
+  </ol>
+</section>
+
+<section class="slide" data-sec="5 Git and GitHub" id="s5e">
+  <span class="tag">Section 5 · Part 5 of 5</span>
+  <h2>The Git commands you will use every day</h2>
+  <div class="tw"><table><thead><tr><th>Command</th><th>What it does</th><th>In plain words</th></tr></thead><tbody>
+    <tr><td><code>git status</code></td><td>Shows what changed and what is staged</td><td>“What is the state of my project?”</td></tr>
+    <tr><td><code>git add .</code></td><td>Stages every change</td><td>Put everything in the box</td></tr>
+    <tr><td><code>git commit -m "note"</code></td><td>Saves a snapshot with your note</td><td>Seal and label the box</td></tr>
+    <tr><td><code>git push</code></td><td>Uploads new commits to GitHub</td><td>Post the box</td></tr>
+    <tr><td><code>git log --oneline</code></td><td>Lists your save-points</td><td>See the history</td></tr>
+  </tbody></table></div>
+  <span class="say">Write commit notes that say what you did: “Add contact section”, not “stuff”. Future you will thank you.</span>
+</section>
+
+<!-- ============ 6 DEPLOY ============ -->
+<section class="slide" data-sec="6 Deploying" id="s6a">
+  <span class="tag">Section 6 · Part 1 of 4</span>
+  <h2>Deploying: moving your page onto a computer that stays on</h2>
+  <p class="pro">Deployment is copying your files to a server that is always connected, so anyone with the address can request them.</p>
+  <span class="say">Your laptop sleeps and has no public address. A hosting service rents you space on a computer that never sleeps and gives you a link.</span>
+  <span class="eng">Commissioning: the design leaves the workshop and goes to site, where the client can use it.</span>
+  <div class="tw"><table><thead><tr><th>Host</th><th>Good for</th><th>Know before you choose</th></tr></thead><tbody>
+    <tr><td>GitHub Pages</td><td>Plain HTML, CSS and JavaScript pages from a repository you already have</td><td>Free for public repositories. Check GitHub’s current limits.</td></tr>
+    <tr><td>Netlify</td><td>Drag a folder in and it is live, or connect a repository</td><td>Free plan with usage limits. Check them.</td></tr>
+    <tr><td>Vercel</td><td>Web apps built with frameworks</td><td>The free Hobby plan is for personal, non-commercial use only.</td></tr>
+    <tr><td>Cloudflare Pages</td><td>Fast static sites</td><td>Free plan. Check current limits.</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="slide" data-sec="6 Deploying" id="s6b">
+  <span class="tag">Section 6 · Part 2 of 4 · Decision helper</span>
+  <h2>Which host should you pick?</h2>
+  <div class="lab" id="host-lab"></div>
+</section>
+
+<section class="slide" data-sec="6 Deploying" id="s6c">
+  <span class="tag">Section 6 · Part 3 of 4</span>
+  <h2>Publish with GitHub Pages</h2>
+  <ol class="steps">
+    <li><b>Open your repository</b> on GitHub and go to <b>Settings → Pages</b>.</li>
+    <li>Under <b>Build and deployment</b>, set <b>Source</b> to “Deploy from a branch”. Choose branch <code>main</code> and folder <code>/ (root)</code>, then press <b>Save</b>.</li>
+    <li><b>Wait a minute or two</b> and refresh. A green box shows your link: <code>https://YOUR-USERNAME.github.io/my-first-page/</code>.</li>
+    <li><b>Open it on your phone.</b> Send it to a friend. You are on the internet.</li>
+  </ol>
+  <h3>What happens behind the scenes</h3>
+  <div id="dep-st"></div>
+</section>
+
+<section class="slide" data-sec="6 Deploying" id="s6d">
+  <span class="tag">Section 6 · Part 4 of 4</span>
+  <h2>Changing your live page</h2>
+  <div class="flow">
+    <div class="node"><b>1 Edit</b>Change a file in VS Code, save</div><div class="arr">→</div>
+    <div class="node"><b>2 Commit</b>Seal the change with a note</div><div class="arr">→</div>
+    <div class="node"><b>3 Push</b>Send it to GitHub</div><div class="arr">→</div>
+    <div class="node"><b>4 Live</b>The host updates the link</div>
+  </div>
+  <div id="t-loop"></div>
+  <h3>If something goes wrong</h3>
+  <details><summary>The link shows “404 – page not found”</summary><p>The file must be named <code>index.html</code> and sit at the top level of the repository, not inside a folder. File names are case-sensitive online, so <code>Index.html</code> is a different name.</p></details>
+  <details><summary>It worked before, but my change is not showing</summary><p>Check the commit and push both happened (<code>git status</code>). Then wait a minute, and hard-refresh the page with Ctrl + F5.</p></details>
+  <details><summary>The push is rejected or asks for a password</summary><p>GitHub no longer accepts your account password for Git. Use the browser sign-in window, or set up an SSH key. If the repository already had a README, run <code>git pull origin main --rebase</code> first.</p></details>
+  <details><summary>“git is not recognized” or “code is not recognized”</summary><p>Close every terminal and open a new one. Programs only learn about new installs when they start.</p></details>
+</section>
+
+
+<!-- ============ 7 UNDER THE HOOD ============ -->
+<section class="slide" data-sec="7 Under the hood" id="u1">
+  <span class="tag">Under the hood · Part 1 of 20</span>
+  <h2>Meet every tool in one picture</h2>
+  <p>Eleven pieces of software cooperate to get your page from your keyboard to a stranger’s phone. Click each one.</p>
+  <div class="tmap" id="tmap">
+    <div class="zn"><h4>Your laptop</h4><button type="button" data-t="vsc" aria-pressed="true">VS Code</button><button type="button" data-t="term" aria-pressed="false">Git Bash</button><button type="button" data-t="git" aria-pressed="false">Git</button></div>
+    <div class="zn"><h4>Online storage</h4><button type="button" data-t="gh" aria-pressed="false">GitHub</button></div>
+    <div class="zn"><h4>Hosting</h4><button type="button" data-t="vercel" aria-pressed="false">Vercel</button><button type="button" data-t="render" aria-pressed="false">Render</button></div>
+    <div class="zn"><h4>Your app’s three parts</h4><button type="button" data-t="react" aria-pressed="false">React</button><button type="button" data-t="backend" aria-pressed="false">Backend</button><button type="button" data-t="db" aria-pressed="false">Database</button></div>
+    <div class="zn"><h4>The visitor’s side</h4><button type="button" data-t="dns" aria-pressed="false">DNS</button><button type="button" data-t="brw" aria-pressed="false">Browser</button></div>
+  </div>
+  <div class="card" id="tinfo" aria-live="polite"></div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u2">
+  <span class="tag">Under the hood · Part 2 of 20</span>
+  <h2>VS Code: a text editor with helpers</h2>
+  <div class="flow">
+    <div class="node on"><b>You type</b>Letters on the keyboard</div><div class="arr"><small>Ctrl + S</small>→</div>
+    <div class="node on"><b>A plain text file</b>index.html on your disk</div><div class="arr">→</div>
+    <div class="node"><b>Other tools read it</b>The browser opens it. Git snapshots it.</div>
+  </div>
+  <span class="say">Your code is just text in a file. VS Code is a very helpful way to write that text. It does not run your page. The browser does.</span>
+  <div class="grid">
+    <div class="card"><h3>The helpers</h3><p>It colours words by meaning, underlines mistakes, and completes what you start typing.</p></div>
+    <div class="card"><h3>Extensions</h3><p>Add-ons such as Live Server and Prettier. They run separately from the editor, so a faulty add-on cannot freeze your typing.</p></div>
+    <div class="card"><h3>The built-in terminal</h3><p>A window inside VS Code that runs a shell (Git Bash). It saves you switching windows to run Git commands.</p></div>
+    <div class="card a"><h3>A fun fact</h3><p>VS Code is itself built with web technology: it is a web page running in a desktop window.</p></div>
+  </div>
+  <span class="eng">A CAD program does not build the part. It helps you draw it, and the machine shop reads the drawing file.</span>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u3">
+  <span class="tag">Under the hood · Part 3 of 20</span>
+  <h2>The browser: turning files into a page</h2>
+  <p class="pro">The browser parses HTML into a tree, applies CSS rules, computes layout, and paints pixels. JavaScript can change the tree and trigger a repaint.</p>
+  <div id="brw-st"></div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u4">
+  <span class="tag">Under the hood · Part 4 of 20 · Try it</span>
+  <h2>Git inside: snapshots and sticky notes</h2>
+  <div class="grid">
+    <div class="card"><h3>A commit is a snapshot</h3><p>It stores your project as it looked at that moment, with your note, the time, and a pointer to the commit before it. Each has a short code, such as <code>a3f9</code>.</p></div>
+    <div class="card"><h3>A branch is a sticky note</h3><p>A label stuck on one commit. Make a new commit and the note moves forward with you.</p></div>
+    <div class="card a"><h3>Where it lives</h3><p>In a hidden folder called <code>.git</code> inside your project. Delete it and the history goes.</p></div>
+  </div>
+  <p>Press <b>Make a commit</b> a few times, then <b>Create a branch</b> and commit again. Switch between branches to see which note moves.</p>
+  <div class="lab chain" id="chain"></div>
+  <span class="eng">Branches are like trying a design change on a copy of the drawing, while the approved drawing stays untouched until you merge.</span>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u5">
+  <span class="tag">Under the hood · Part 5 of 20</span>
+  <h2>GitHub inside: storage plus a doorbell</h2>
+  <div id="gh-st"></div>
+  <div class="grid">
+    <div class="card"><h3>1. A copy of your .git folder</h3><p>That is why every old snapshot is still there online.</p></div>
+    <div class="card"><h3>2. A sign-in check</h3><p>It must know the push really comes from you: a browser sign-in or an SSH key.</p></div>
+    <div class="card a"><h3>3. A webhook</h3><p class="pro">An automatic message sent to another service when an event happens.</p><span class="say">A doorbell. Whenever someone pushes, GitHub rings the hosting service’s bell, and that starts the deployment.</span></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u6">
+  <span class="tag">Under the hood · Part 6 of 20</span>
+  <h2>Static or dynamic? This decides your host</h2>
+  <div class="seg" id="sd-seg"><button type="button" data-v="s" aria-pressed="true">Static page</button><button type="button" data-v="d" aria-pressed="false">Dynamic app</button></div>
+  <div id="sd-flow"></div>
+  <div class="two">
+    <div class="card"><h3>Static: ready-made files</h3><p>A brochure, a portfolio, a class page. The server just hands over the files.</p><p><b>Good hosts:</b> GitHub Pages, Vercel, Netlify.</p></div>
+    <div class="card a"><h3>Dynamic: built on request</h3><p>Logins, saved meal plans, anything personal. A program runs your code and asks a database each time. A program that stays running is called a <b>server</b>.</p><p><b>Good host:</b> Render, plus a database.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="r1">
+  <span class="tag">Under the hood · Part 7 of 20 · Try it</span>
+  <h2>React: build screens from reusable pieces</h2>
+  <p class="pro">React is a JavaScript library for building user interfaces from components, small reusable functions that each return a piece of the screen.</p>
+  <span class="say">Lego bricks. You design one meal card once, then reuse it for every meal. Click a piece on the left to see it highlighted on the page.</span>
+  <div class="two">
+    <div><div class="tree" id="rtree"></div><div class="card" id="rinfo" style="margin-top:10px" aria-live="polite"></div></div>
+    <div class="mock" id="rmock"></div>
+  </div>
+  <p class="hint">Press Choose on a meal. The header changes, because the choice is stored in one place called <b>state</b>, and React redraws only what depends on it.</p>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="r2">
+  <span class="tag">Under the hood · Part 8 of 20</span>
+  <h2>React in deployment: from your source to files a browser can open</h2>
+  <p class="pro">Browsers cannot read JSX. A build tool (Vite) compiles and bundles the source into plain HTML, CSS and JavaScript, and only that output is deployed.</p>
+  <div id="rb-st"></div>
+  <div class="two">
+    <div><b>What you write (the project)</b><div class="code">my-react-app/
+├─ index.html       <small>← one page shell with an empty div</small>
+├─ package.json     <small>← name, packages, scripts</small>
+├─ vite.config.js   <small>← build settings</small>
+├─ public/          <small>← copied as-is (icon, images)</small>
+└─ src/
+   ├─ main.jsx      <small>← starts React in the page</small>
+   ├─ App.jsx       <small>← the top component</small>
+   ├─ components/   <small>← Header, MealCard…</small>
+   └─ pages/        <small>← Plans, Login…</small></div></div>
+    <div><b>What gets deployed (after npm run build)</b><div class="code">dist/
+├─ index.html          <small>← nearly empty shell</small>
+└─ assets/
+   ├─ index-4f9a2c.js  <small>← all your code, packed and shrunk</small>
+   └─ index-b71d0e.css <small>← all your styles</small></div><span class="say">The random-looking letters in the file names change on every build, so browsers download the new version instead of using an old saved copy.</span></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="r3">
+  <span class="tag">Under the hood · Part 9 of 20</span>
+  <h2>How the browser runs a React app</h2>
+  <p class="pro">A single-page application (SPA): the server sends one shell page, and React builds and updates the interface in the browser.</p>
+  <div id="rs-st"></div>
+  <div class="grid">
+    <div class="card w"><h3>Why refreshing can show 404</h3><p>On a static host, refreshing <code>/plans</code> asks for a file named plans, which does not exist. The fix is a rewrite rule that sends every address to <code>index.html</code>, and then React Router shows the right page. Vercel and Netlify have a setting for this.</p></div>
+    <div class="card a"><h3>Public by design</h3><p>Everything in a React app is downloaded by every visitor, so never put a secret in it. Vite only exposes variables starting with <code>VITE_</code>, and even those are visible.</p></div>
+    <div class="card"><h3>React with Vite vs Next.js</h3><p><b>Vite:</b> the browser builds the screen after loading. <b>Next.js:</b> the server can build the HTML first, so the visitor sees content sooner. Next.js is a better fit when search engines must read your pages.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="b1">
+  <span class="tag">Under the hood · Part 10 of 20</span>
+  <h2>Backend structure: a request passes through layers</h2>
+  <p class="pro">A layered backend separates routing, validation, business rules and data access, so each can change without breaking the others.</p>
+  <div id="bk-st"></div>
+  <div class="two">
+    <div><b>A typical backend project</b><div class="code">server/
+├─ src/
+│  ├─ index.js        <small>← starts the server on a port</small>
+│  ├─ app.js          <small>← sets up checks, mounts routes</small>
+│  ├─ config.js       <small>← reads environment variables</small>
+│  ├─ middleware/     <small>← login check, error handler</small>
+│  └─ modules/
+│     ├─ auth/        <small>← routes, service, repository</small>
+│     ├─ dishes/
+│     └─ plans/
+├─ prisma/schema.prisma <small>← the tables, described in code</small>
+└─ package.json</div></div>
+    <div><b>Replies the backend can send</b>
+      <div class="tw"><table style="min-width:0"><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody>
+        <tr><td>200 · 201</td><td>OK · created something new</td></tr>
+        <tr><td>400</td><td>Your data is wrong or missing</td></tr>
+        <tr><td>401</td><td>Not signed in</td></tr>
+        <tr><td>403</td><td>Signed in, but not allowed</td></tr>
+        <tr><td>404</td><td>Not found</td></tr>
+        <tr><td>500</td><td>A bug on the server’s side</td></tr>
+      </tbody></table></div></div>
+  </div>
+  <span class="say">Routes are the receptionist, the checks are security, the service is the chef who knows the recipes, and the repository is the storekeeper who fetches ingredients.</span>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="b2">
+  <span class="tag">Under the hood · Part 11 of 20 · Try it</span>
+  <h2>Database structure: tables that point at each other</h2>
+  <div class="tw"><table><thead><tr><th>Term</th><th>Professional</th><th>In plain words</th></tr></thead><tbody>
+    <tr><td>Table</td><td>A set of records with the same fields</td><td>One sheet of a spreadsheet</td></tr>
+    <tr><td>Row and column</td><td>One record · one field</td><td>One entry · one heading</td></tr>
+    <tr><td>Primary key (PK)</td><td>A unique identifier for each row</td><td>An ID number nobody else shares</td></tr>
+    <tr><td>Foreign key (FK)</td><td>A column that stores another table’s primary key</td><td>A reference: “this plan belongs to user 1”</td></tr>
+    <tr><td>SQL</td><td>The language for querying a relational database</td><td>How you ask the database a question</td></tr>
+    <tr><td>ORM (Prisma)</td><td>A layer that maps code objects to tables</td><td>A translator, so you rarely write SQL by hand</td></tr>
+  </tbody></table></div>
+  <div class="flow">
+    <div class="node on"><b>users</b>one person</div><div class="arr"><small>has many</small>→</div>
+    <div class="node on"><b>meal_plans</b>one day’s plan</div><div class="arr"><small>has many</small>→</div>
+    <div class="node on"><b>meal_plan_items</b>one meal slot</div><div class="arr"><small>points to one</small>→</div>
+    <div class="node on"><b>dishes</b>one dish</div>
+  </div>
+  <p>Pick a question. The matching tables light up, and you see the SQL and the answer. This is sample data.</p>
+  <div class="lab" id="db-lab"></div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u7">
+  <span class="tag">Under the hood · Part 12 of 20</span>
+  <h2>Vercel inside: build once, serve from everywhere</h2>
+  <div id="vc-st"></div>
+  <div class="grid">
+    <div class="card"><h3>The build step</h3><p>Some projects need a preparation step that turns your source into final files. Vercel notices the type of project and runs it. A plain HTML page needs none.</p></div>
+    <div class="card"><h3>A CDN</h3><p class="pro">A content delivery network: many servers around the world holding the same files.</p><span class="say">Many shops stocking the same product, so each customer collects from the nearest one.</span></div>
+    <div class="card"><h3>Preview and production</h3><p>A push to your main branch updates the real link. Pushes to other branches get their own preview link to test first.</p></div>
+    <div class="card a"><h3>Backend code</h3><p>It runs in short on-demand functions, started when a request arrives and stopped after. It is not a server that stays on.</p></div>
+  </div>
+  <p class="hint">You set it up by importing a GitHub repository. Button names change, so look for “Add New → Project”.</p>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u8">
+  <span class="tag">Under the hood · Part 13 of 20</span>
+  <h2>Render inside: a computer that stays on for your program</h2>
+  <div id="rd-st"></div>
+  <div class="grid">
+    <div class="card"><h3>Two commands you provide</h3><p>A <b>build command</b> (get ready, for example install packages) and a <b>start command</b> (run the program). Render runs the first once and keeps the second running.</p></div>
+    <div class="card"><h3>Health check</h3><p>Render keeps asking a page you choose, such as <code>/api/health</code>, “are you alive?” If it stops answering, Render restarts the program.</p></div>
+    <div class="card w"><h3>The free-plan catch</h3><p>A free service sleeps after 15 minutes without visitors, so the first visit afterwards takes about a minute. Its free databases expire after 30 days, which is why GlucoPlate keeps its database on Neon.</p></div>
+    <div class="card a"><h3>Auto-deploy</h3><p>Every push to the chosen branch triggers a fresh build and restart by itself.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="b3">
+  <span class="tag">Under the hood · Part 14 of 20</span>
+  <h2>A whole app deployed: React, backend and database together</h2>
+  <div id="fs-st"></div>
+  <div class="grid">
+    <div class="card"><h3>What each host holds</h3><p><b>Vercel:</b> the React files. <b>Render:</b> the running backend. <b>Neon:</b> the database. Three services, three links, three jobs.</p></div>
+    <div class="card a"><h3>Who knows which secret</h3><p>The React app holds only public values, such as the backend’s address. The backend holds the database address and the signing key, set in Render’s dashboard.</p></div>
+    <div class="card w"><h3>Why CORS exists</h3><p class="pro">Cross-Origin Resource Sharing: the server lists which websites may read its replies.</p><span class="say">A browser stops one website reading another’s data unless the second site says “that one is allowed”.</span></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u9">
+  <span class="tag">Under the hood · Part 15 of 20</span>
+  <h2>Secrets: how a host gets your passwords safely</h2>
+  <p class="pro">Secrets are configuration values, such as database addresses and API keys, that must never be committed to a repository.</p>
+  <div id="env-st"></div>
+  <div class="callout bad"><b>If a secret reaches a public repository,</b> treat it as stolen: change it at its source straight away. Deleting the file later does not erase the history.</div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u10">
+  <span class="tag">Under the hood · Part 16 of 20</span>
+  <h2>Names, addresses and the padlock</h2>
+  <div class="flow">
+    <div class="node"><b>1 A name</b><code>my-first-page.vercel.app</code></div><div class="arr">→</div>
+    <div class="node"><b>2 DNS lookup</b>The name becomes a number address</div><div class="arr">→</div>
+    <div class="node"><b>3 Secure handshake</b>The server proves who it is</div><div class="arr">→</div>
+    <div class="node"><b>4 Scrambled traffic</b>The padlock shows in the browser</div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Free names</h3><p>Hosts give you one for nothing: <code>name.github.io</code>, <code>name.vercel.app</code>, <code>name.onrender.com</code>.</p></div>
+    <div class="card"><h3>Your own name</h3><p>Rent one yearly from a registrar, then tell the host to use it by adding DNS records the host shows you.</p></div>
+    <div class="card"><h3>HTTPS</h3><p class="pro">Encrypted traffic with a certificate that proves the server’s identity.</p><span class="say">Messages are sealed, so strangers on the same Wi-Fi cannot read them. These hosts set it up for you.</span></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="d1">
+  <span class="tag">Under the hood · Part 17 of 20</span>
+  <h2>DNS in depth: who answers when you type a name</h2>
+  <p class="pro">The Domain Name System is a distributed, hierarchical directory that maps names to IP addresses, with caching at every level.</p>
+  <div id="dns-st"></div>
+  <div class="grid">
+    <div class="card"><h3>Three levels of directory</h3><p>Root servers know who runs each ending (.com, .app, .ke). Ending servers know who runs each name. The name’s own servers hold the real answer.</p></div>
+    <div class="card a"><h3>Caching and TTL</h3><p class="pro">Time to live: how long an answer may be remembered.</p><span class="say">Everyone keeps a copy of the answer for a while so nobody asks the whole chain each time.</span></div>
+  </div>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="d2">
+  <span class="tag">Under the hood · Part 18 of 20 · Try it</span>
+  <h2>DNS records, and connecting your own domain</h2>
+  <div class="tw"><table><thead><tr><th>Record</th><th>Stores</th><th>Example</th><th>In plain words</th></tr></thead><tbody>
+    <tr><td>A</td><td>Name → IPv4 address</td><td><code>mysite.com → 203.0.113.7</code></td><td>A house number for a name</td></tr>
+    <tr><td>AAAA</td><td>Name → IPv6 address</td><td>a longer address</td><td>The same, in the newer numbering</td></tr>
+    <tr><td>CNAME</td><td>Name → another name</td><td><code>www.mysite.com → host.example.net</code></td><td>A forwarding sign: ask that name instead</td></tr>
+    <tr><td>TXT</td><td>Free text</td><td>a proof-of-ownership code</td><td>A note pinned to the name</td></tr>
+    <tr><td>MX</td><td>Where email goes</td><td>a mail server name</td><td>The mailroom address</td></tr>
+    <tr><td>NS</td><td>Who is in charge of the records</td><td>two or more server names</td><td>Who runs this page of the directory</td></tr>
+  </tbody></table></div>
+  <p><b>Connecting your own domain:</b> you buy a name from a registrar (a company that sells domain names), then add a record at its DNS settings. Choose what you want to connect:</p>
+  <div class="lab" id="dns-lab"></div>
+  <div id="t-dns"></div>
+  <span class="say">DNS changes are not instant: other computers keep the old answer until its TTL runs out, so allow minutes to a few hours.</span>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u11">
+  <span class="tag">Under the hood · Part 19 of 20</span>
+  <h2>Vercel or Render: side by side</h2>
+  <div class="tw"><table><thead><tr><th></th><th>Vercel</th><th>Render</th></tr></thead><tbody>
+    <tr><td>Best for</td><td>Websites and front ends: plain pages and frameworks such as Next.js</td><td>Servers that must keep running: APIs and backends, such as GlucoPlate’s</td></tr>
+    <tr><td>How your code runs</td><td>Files served from servers worldwide. Backend code runs in short on-demand functions.</td><td>Your program runs all the time on a rented machine, waiting for requests.</td></tr>
+    <tr><td>You give it</td><td>A repository. Settings are mostly detected.</td><td>A repository, a build command, a start command and your secrets.</td></tr>
+    <tr><td>Your link</td><td><code>name.vercel.app</code></td><td><code>name.onrender.com</code></td></tr>
+    <tr><td>Free-plan catch</td><td>The Hobby plan is for personal, non-commercial use only.</td><td>Sleeps after 15 idle minutes. Free databases expire after 30 days.</td></tr>
+    <tr><td>Pairs well with</td><td>A backend hosted somewhere else</td><td>A database such as Neon</td></tr>
+    <tr><td>Both</td><td colspan="2">Redeploy automatically on every push, give you free HTTPS, and read secrets from their dashboards.</td></tr>
+  </tbody></table></div>
+  <span class="say">Many real apps use both: the web pages on Vercel, the backend on Render, and the database on Neon.</span>
+</section>
+
+<section class="slide" data-sec="7 Under the hood" id="u12">
+  <span class="tag">Under the hood · Part 20 of 20</span>
+  <h2>The life of one change, from keyboard to stranger’s screen</h2>
+  <div id="life-st"></div>
+</section>
+
+<!-- ============ 8 WRAP-UP ============ -->
+<section class="slide" data-sec="8 Wrap-up" id="s7a">
+  <span class="tag">Recap</span>
+  <h2>The whole route, with the command for each stop</h2>
+  <div class="flow">
+    <div class="node"><b>Write</b>VS Code<br><code>index.html</code></div><div class="arr">→</div>
+    <div class="node"><b>Track</b><code>git add .</code><br><code>git commit -m "…"</code></div><div class="arr">→</div>
+    <div class="node"><b>Share</b><code>git push</code><br>to GitHub</div><div class="arr">→</div>
+    <div class="node"><b>Publish</b>Settings → Pages</div><div class="arr">→</div>
+    <div class="node"><b>Visit</b>github.io link</div>
+  </div>
+  <h3>Check yourself</h3>
+  <div id="quiz"></div>
+  <p class="prog" id="qscore" style="font-weight:600;color:var(--deep)"></p>
+</section>
+
+<section class="slide" data-sec="8 Wrap-up" id="s7b">
+  <span class="tag">Where next</span>
+  <h2>What to learn after today</h2>
+  <div class="grid">
+    <div class="card"><h3>Build more pages</h3><p>Add a second page, a picture and a contact link. Every change is one commit and one push.</p></div>
+    <div class="card"><h3>Learn the runtime</h3><p>Node.js lets JavaScript run on your laptop and on servers. It is the next step towards real applications.</p></div>
+    <div class="card"><h3>Add a server and database</h3><p>Pages that remember users need a backend and a database. That is the next session’s topic.</p></div>
+    <div class="card a"><h3>Use AI as a tutor</h3><p>Build things by hand first. Then ask AI to explain, and give it your project’s context. Do not paste in “make an app, no mistakes” and hope.</p></div>
+  </div>
+  <div class="callout"><b>Questions?</b> What would you put on a page about yourself, and what would you want to build next?</div>
+</section>
+
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+
+/* ===== terminals ===== */
+function term(id,title,prompt,lines){$(id).innerHTML=`<div class="term"><div class="th">${title}</div><div class="tb">${lines.map(([t,x])=>t==='c'?`<div class="l c"><span class="pr">${esc(prompt)}</span><span>${esc(x)}</span><button class="cp" data-c="${esc(x)}">Copy</button></div>`:`<div class="l ${t}"><span>${esc(x)}</span></div>`).join('')}</div></div>`}
+term('t-cfg','Git Bash','$ ',[['c','git config --global user.name "Your Name"'],['c','git config --global user.email "you@example.com"'],['c','git config --global init.defaultBranch main'],['m','Use the same email as your GitHub account.']]);
+term('t-push','Git Bash','$ ',[['c','cd ~/dev/my-first-page'],['c','git init'],['c','git add .'],['c','git commit -m "First version of my page"'],['c','git branch -M main'],['c','git remote add origin https://github.com/YOUR-USERNAME/my-first-page.git'],['c','git push -u origin main']]);
+term('t-loop','Git Bash','$ ',[['m','After editing and saving a file in VS Code:'],['c','git add .'],['c','git commit -m "Change my headline"'],['c','git push'],['m','Wait a minute, then refresh your live link.']]);
+document.addEventListener('click',e=>{const b=e.target.closest('.cp');if(!b)return;
+  (navigator.clipboard?navigator.clipboard.writeText(b.dataset.c):Promise.reject()).then(()=>{b.textContent='Copied'}).catch(()=>{b.textContent='Select + Ctrl+C'});
+  setTimeout(()=>{b.textContent='Copy'},1600)});
+
+/* ===== journey map ===== */
+const J=[
+['Idea','On paper','Decide what the page says and who it is for.','Pen and paper, or your head','The concept sketch before any drawing.'],
+['Write','VS Code','Type the HTML, CSS and JavaScript in an editor.','Visual Studio Code','The drawing office, producing the drawings.'],
+['Track','Git','Save labelled snapshots so you can always go back.','Git and Git Bash','Drawing revisions Rev A, B, C with notes.'],
+['Share','GitHub','Upload the snapshots online, safe from a lost laptop and open to teammates.','GitHub','The shared project drive.'],
+['Publish','Hosting','A hosting computer copies your files and serves them to anyone.','GitHub Pages, Netlify or Vercel','Commissioning: handing the work over to site.'],
+['Visit','Browser','Anyone with the link opens your page on a phone or computer.','Any browser','The client uses the finished system.']];
+(function(){const box=$('journey');
+  box.innerHTML=J.map((s,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===1}">${s[0]}<small>${s[1]}</small></button>${i<J.length-1?'<span class="arr" aria-hidden="true">→</span>':''}`).join('');
+  function show(i){box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.i==i));
+    const s=J[i];$('jinfo').innerHTML=`<h3>${i+1}. ${s[0]}</h3><p><b>What happens:</b> ${s[2]}</p><p><b>Tool:</b> ${s[3]}</p><span class="eng">${s[4]}</span>`}
+  box.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(b.dataset.i)});show(1)})();
+
+/* ===== generic stepper for flow diagrams ===== */
+function stepper(id,nodes,steps){
+  const el=$(id);let i=-1;
+  el.innerHTML=`<div class="flow">${nodes.map((n,k)=>`<div class="node" data-n="${n[0]}"><b>${n[1]}</b>${n[2]}</div>${k<nodes.length-1?'<div class="arr" aria-hidden="true">→</div>':''}`).join('')}</div><div class="msg" aria-live="polite"></div><div class="nv2"><button type="button" data-d="-1">← Back</button><span class="ct"></span><button type="button" data-d="1">Next step →</button><button type="button" data-d="0">Restart</button></div>`;
+  const msg=el.querySelector('.msg'),ct=el.querySelector('.ct'),bt=el.querySelectorAll('.nv2 button');
+  function draw(){
+    el.querySelectorAll('.node').forEach(n=>n.classList.toggle('on',i>=0&&steps[i].on.includes(n.dataset.n)));
+    if(i<0){msg.innerHTML='<b>Press Next step to start.</b>';}
+    else{const s=steps[i];msg.innerHTML=`<span class="dir">${s.t}</span><b>${s.m}</b><br><span class="say" style="margin-top:6px">${s.s}</span>`}
+    ct.textContent=i<0?'Ready':`Step ${i+1} of ${steps.length}`;bt[0].disabled=i<0;bt[1].disabled=i>=steps.length-1}
+  bt.forEach(b=>b.onclick=()=>{const d=Number(b.dataset.d);i=d===0?-1:Math.max(-1,Math.min(steps.length-1,i+d));draw()});draw();
+}
+stepper('web-st',[['you','You','Your browser'],['dns','DNS','The internet’s phone book'],['srv','Server','A computer that stores the site']],[
+ {on:['you','dns'],t:'You → DNS',m:'“Where does example.com live?”',s:'Names are easy for people, but computers use number addresses. The browser asks the phone book first.'},
+ {on:['dns','you'],t:'DNS → You',m:'“It lives at 203.0.113.7.”',s:'That number is the server’s address, like a house number for a computer.'},
+ {on:['you','srv'],t:'You → Server',m:'“Please send me the page.”',s:'This is called a request. Your browser sends it to that address.'},
+ {on:['srv','you'],t:'Server → You',m:'“Here are index.html, style.css and app.js.”',s:'The server replies with the three kinds of file: structure, look and behaviour.'},
+ {on:['you'],t:'You',m:'Your browser builds and shows the page.',s:'The whole round trip usually takes a fraction of a second.'}]);
+stepper('dep-st',[['me','Your laptop','git push'],['gh','GitHub','Stores your repository'],['pg','GitHub Pages','Copies files to a web server'],['web','Live link','Anyone can visit']],[
+ {on:['me','gh'],t:'Laptop → GitHub',m:'You push your commit.',s:'Your new save-point travels to the online copy of your project.'},
+ {on:['gh'],t:'GitHub',m:'GitHub notices a new commit on main.',s:'This is why the branch name and the Pages setting must match.'},
+ {on:['gh','pg'],t:'GitHub → Pages',m:'Pages copies your files to its servers.',s:'Pages runs automatically. You do nothing.'},
+ {on:['pg','web'],t:'Pages → Link',m:'The site goes live at your github.io address.',s:'This usually takes a minute or two.'},
+ {on:['web'],t:'Anyone',m:'Visitors open the link.',s:'Every future push repeats these steps and updates the page.'}]);
+
+/* ===== playground ===== */
+const PG=[
+`<h1>Hello, DESA!</h1>
+<p>My first web page.</p>`,
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My first page</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #e3f4f1; padding: 2rem; }
+    h1 { color: #0f766e; }
+  </style>
+</head>
+<body>
+  <h1>Hello, DESA!</h1>
+  <p>My first web page.</p>
+</body>
+</html>`,
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My first page</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #e3f4f1; padding: 2rem; }
+    h1 { color: #0f766e; }
+    button { font-size: 1rem; padding: .5rem 1.2rem; border-radius: 999px; border: 0; background: #0d9488; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Hello, DESA!</h1>
+  <p>My first web page.</p>
+  <button id="btn">Click me</button>
+  <p id="out"></p>
+  <script>
+    var count = 0;
+    document.getElementById("btn").onclick = function () {
+      count++;
+      document.getElementById("out").textContent = "Clicked " + count + " times";
+    };
+  <\/script>
+</body>
+</html>`];
+(function(){const src=$('pg-src'),pv=$('pg-pv'),seg=$('pg-seg');let t;
+  const run=()=>{pv.srcdoc=src.value};
+  function set(i){src.value=PG[i];seg.querySelectorAll('button[data-p]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p==i));run()}
+  src.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(run,250)});
+  seg.addEventListener('click',e=>{const b=e.target.closest('button[data-p]');if(b)set(b.dataset.p)});
+  $('pg-copy').onclick=function(){const b=this;(navigator.clipboard?navigator.clipboard.writeText(src.value):Promise.reject()).then(()=>{b.textContent='Copied'}).catch(()=>{src.select();b.textContent='Press Ctrl+C'});setTimeout(()=>{b.textContent='Copy this page'},1800)};
+  set(0)})();
+
+/* ===== desktop simulator (installers) ===== */
+const ck=(l,on,hl,s)=>`<div class="opt ${hl?'hl':''}"><span class="bx ${on?'on':''}"></span><span>${l}${s?`<small>${s}</small>`:''}</span></div>`;
+const rd=(l,on,hl,s)=>`<div class="opt ${hl?'hl':''}"><span class="bx r ${on?'on':''}"></span><span>${l}${s?`<small>${s}</small>`:''}</span></div>`;
+const hd=(h,p)=>`<h4>${h}</h4><p>${p||''}</p>`;
+function sim(id,title,screens){
+  const el=$(id);let i=0;
+  el.innerHTML=`<div class="desk"><div class="win"><div class="tb2"><span class="ti"></span><span>–&nbsp;&nbsp;☐&nbsp;&nbsp;✕</span></div><div class="bd"></div><div class="ft"></div></div><div class="task"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="sp">Search</span><span class="clk">8:00 PM</span></div></div><div class="cap" aria-live="polite"></div><div class="nv"><button type="button" data-d="-1">← Previous screen</button><span class="ct"></span><button type="button" data-d="1">Next screen →</button></div>`;
+  const q=s=>el.querySelector(s),btns=el.querySelectorAll('.nv button');
+  function draw(){const s=screens[i];q('.ti').textContent=title;q('.bd').innerHTML=s.b;
+    const nx=s.n||'Next ›';q('.ft').innerHTML=['‹ Back',nx,'Cancel'].map(x=>`<span class="${x===nx?'df':''}">${x}</span>`).join('');
+    q('.cap').innerHTML=`<b>Do this:</b> ${s.d}<br><b>Why:</b> ${s.w}`;q('.ct').textContent=`Screen ${i+1} of ${screens.length}`;
+    btns[0].disabled=i===0;btns[1].disabled=i===screens.length-1}
+  btns.forEach(b=>b.onclick=()=>{i+=Number(b.dataset.d);draw()});draw();
+}
+sim('sim-vs','Setup – Microsoft Visual Studio Code',[
+{b:hd('License Agreement','Please read the following important information.')+rd('I accept the agreement',true,true)+rd('I do not accept the agreement',false),d:'Choose <b>I accept the agreement</b>. Press Next here and on the next two screens, keeping the defaults.',w:'The defaults install VS Code in your own user folder, with no administrator rights needed.'},
+{b:hd('Select Additional Tasks','Which additional tasks should be performed?')+ck('Create a desktop icon',true)+ck('Add “Open with Code” to the file context menu',true,true)+ck('Add “Open with Code” to the folder context menu',true,true)+ck('Register Code as an editor for supported file types',true)+ck('Add to PATH (requires shell restart)',true,true),d:'Tick everything. The two <b>Open with Code</b> boxes and <b>Add to PATH</b> matter most.',w:'Open with Code lets you right-click any folder to edit it. Add to PATH lets you type <code>code .</code> in a terminal.'},
+{b:hd('Completing the Setup Wizard','Setup has finished installing Visual Studio Code.')+ck('Launch Visual Studio Code',true),n:'Finish',d:'Press Finish.',w:'Open a new terminal later so it notices the new install.'}]);
+sim('sim-git','Git Setup',[
+{b:hd('Select Components','Which components should be installed?')+ck('Windows Explorer integration: Open Git Bash here',true,true)+ck('Git LFS (Large File Support)',true)+ck('Add a Git Bash Profile to Windows Terminal',true),d:'Keep the defaults. Make sure <b>Open Git Bash here</b> is ticked.',w:'It adds a right-click shortcut that opens a terminal in any folder.'},
+{b:hd('Default editor used by Git','Git sometimes opens an editor.')+`<div class="lb"><div>Use Vim (the default editor of Git)</div><div class="hl">Use Visual Studio Code as Git’s default editor</div><div>Use Notepad++ as Git’s default editor</div></div>`,d:'Choose <b>Visual Studio Code</b>.',w:'Vim is famously hard to exit. VS Code is the editor you already know.'},
+{b:hd('Name of the initial branch','New repositories need a first branch name.')+rd('Let Git decide',false)+rd('Override the default branch name: main',true,true),d:'Choose <b>Override</b> and type <code>main</code>.',w:'GitHub uses main too, so your laptop and GitHub agree from the start.'},
+{b:hd('Adjusting your PATH environment','How do you want to use Git?')+rd('Use Git from Git Bash only',false)+rd('Git from the command line and also from 3rd-party software (Recommended)',true,true)+rd('Use Git and optional Unix tools from the Command Prompt',false),d:'Choose the <b>recommended</b> middle option.',w:'It lets VS Code and other programs find Git.'},
+{b:hd('Choose a credential helper','Where should Git remember your sign-in?')+rd('Git Credential Manager',true,true)+rd('None',false),n:'Install',d:'Keep <b>Git Credential Manager</b>, press Next on the remaining screens, then <b>Install</b>.',w:'It opens a browser sign-in for GitHub and remembers you.'}]);
+
+/* ===== VS Code tour ===== */
+const VK={
+ explorer:['Explorer','Your project as a folder tree. Click a file to open it. Right-click for New File or New Folder.','Ctrl + Shift + E'],
+ editor:['Editor','Where you type. Colours help you spot mistakes, and the dot on the tab means unsaved changes.','Ctrl + S to save'],
+ terminal:['Terminal','A command window inside VS Code, so you never switch windows to run Git.','Ctrl + ` to open or close'],
+ git:['Source Control','Lists what changed since your last commit. You can also commit from here with buttons.','Ctrl + Shift + G'],
+ ext:['Extensions','Add-ons you install for free, such as Live Server and Prettier.','Ctrl + Shift + X'],
+ status:['Status bar','Shows your Git branch, your line and column, and the language of the file.','The branch name is on the left'],
+ palette:['Command Palette','Search for any command by name when you forget where it is.','Ctrl + Shift + P']};
+(function(){const box=$('vsc');
+  function show(k){box.querySelectorAll('.hs').forEach(b=>b.classList.toggle('sel',b.dataset.k===k));
+    const v=VK[k];$('vsinfo').innerHTML=`<h3>${v[0]}</h3><p>${v[1]}</p><p><b>Shortcut:</b> <code>${v[2]}</code></p>`}
+  box.addEventListener('click',e=>{const b=e.target.closest('.hs');if(b)show(b.dataset.k)});show('explorer')})();
+
+/* ===== Git practice lab ===== */
+(function(){
+  const el=$('git-lab');
+  let s={content:'Hello from my project',mod:false,staged:false,commits:[],pushed:0,n:0,log:[]};
+  const hash=()=>Math.random().toString(16).slice(2,9);
+  const say=(c,o)=>{s.log.push(['c',c]);(o||[]).forEach(x=>s.log.push(['o',x]));s.log=s.log.slice(-9)};
+  function draw(){
+    const rev=s.commits.slice().reverse();
+    el.innerHTML=`<div class="zones">
+      <div class="zone ${s.mod&&!s.staged?'lit':''}"><h4>Working folder</h4>${s.mod?'● changed':'✓ clean'}<pre style="margin:6px 0 0;white-space:pre-wrap;font:12px 'Cascadia Mono',Consolas,monospace">${esc(s.content)}</pre></div>
+      <div class="zone ${s.staged?'lit':''}"><h4>Staging area</h4>${s.staged?'1 change ready to save':'empty'}</div>
+      <div class="zone"><h4>Local history</h4>${rev.length?rev.slice(0,4).map((c,k)=>`<div class="ci"><span>${c.h} ${esc(c.m)}${s.commits.indexOf(c)<s.pushed?' ☁':''}</span><button type="button" data-r="${s.commits.indexOf(c)}">Restore</button></div>`).join(''):'no commits yet'}</div>
+      <div class="zone ${s.pushed?'lit':''}"><h4>GitHub (online)</h4>${s.pushed?s.commits.slice(0,s.pushed).reverse().slice(0,4).map(c=>`<div class="ci"><span>${c.h} ${esc(c.m)}</span></div>`).join(''):'nothing yet'}</div></div>
+      <div class="seg"><button type="button" class="act" data-a="edit">1 Edit the file</button><button type="button" class="act" data-a="add">2 git add .</button><input id="gl-msg" value="Update my page" aria-label="Commit note" style="font:inherit;padding:6px 10px;border-radius:99px;border:1px solid var(--line);background:var(--paper);color:var(--ink)"><button type="button" class="act" data-a="commit">3 git commit</button><button type="button" class="act" data-a="push">4 git push</button></div>
+      <div class="term"><div class="th">Git Bash</div><div class="tb">${s.log.length?s.log.map(([t,x])=>t==='c'?`<div class="l c"><span class="pr">$ </span><span>${esc(x)}</span></div>`:`<div class="l o"><span>${esc(x)}</span></div>`).join(''):'<div class="l m"><span>Your commands and Git’s answers appear here.</span></div>'}</div></div>`;
+  }
+  el.addEventListener('click',e=>{
+    const r=e.target.closest('[data-r]');
+    if(r){const c=s.commits[Number(r.dataset.r)];s.content=c.content;s.mod=s.content!==s.commits[s.commits.length-1].content;s.staged=false;say('git restore (go back to '+c.h+')',[s.mod?'File now matches the old version. It shows as changed.':'Already the latest version.']);draw();return}
+    const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
+    if(a==='edit'){s.n++;s.content+='\nNew line '+s.n;s.mod=true;s.staged=false;say('(you edit the file in VS Code and save)',[]);}
+    else if(a==='add'){if(!s.mod||s.staged){say('git add .',[s.staged?'Already staged. Now commit.':'Nothing changed, so there is nothing to add.']);}else{s.staged=true;say('git add .',[]);}}
+    else if(a==='commit'){if(!s.staged){say('git commit',[s.mod?'Changes not staged for commit. Use git add first.':'Nothing to commit, working tree clean.']);}
+      else{const m=(document.getElementById('gl-msg').value||'Update').trim()||'Update';const h=hash();s.commits.push({h,m,content:s.content});s.mod=false;s.staged=false;say('git commit -m "'+m+'"',['[main '+h+'] '+m,' 1 file changed']);}}
+    else if(a==='push'){if(!s.commits.length){say('git push',['Nothing to push. Make a commit first.']);}else if(s.pushed===s.commits.length){say('git push',['Everything up-to-date.']);}
+      else{const from=s.pushed;s.pushed=s.commits.length;say('git push',['To github.com:you/my-first-page.git','   '+(from?s.commits[from-1].h:'(new)')+'..'+s.commits[s.pushed-1].h+'  main -> main']);}}
+    draw();
+  });
+  draw();
+})();
+
+/* ===== host chooser ===== */
+(function(){const el=$('host-lab');const st={a:null,b:null,c:null};
+  const Qs=[['a','Is your project just HTML, CSS and JavaScript files (no server code)?'],['b','Is it for learning or personal use, not a business?'],['c','Do you want to skip Git for now?']];
+  function result(){
+    if(st.a===null)return 'Answer the first question to see a recommendation.';
+    if(st.a==='no')return '<b>You need a backend host and usually a database.</b> Services such as Render (backend) and Neon (database) have free plans. That is the next session’s topic.';
+    if(st.c==='yes')return '<b>Netlify drag and drop.</b> Drag your project folder onto Netlify’s deploy page and it goes live. You can add Git later.';
+    if(st.b==='no')return '<b>GitHub Pages or Cloudflare Pages</b>, or Netlify. Avoid the free Vercel Hobby plan for business use, because it is for personal, non-commercial projects.';
+    if(st.b==='yes')return '<b>GitHub Pages.</b> You already have GitHub, and it publishes straight from your repository. Netlify and Vercel also work.';
+    return 'Answer the other questions to narrow it down.'}
+  function draw(){el.innerHTML=Qs.map(([k,t])=>`<p><b>${t}</b></p><div class="seg" data-k="${k}"><button type="button" data-v="yes" aria-pressed="${st[k]==='yes'}">Yes</button><button type="button" data-v="no" aria-pressed="${st[k]==='no'}">No</button></div>`).join('')+`<div class="msg" aria-live="polite">${result()}</div>`}
+  el.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b)return;st[b.parentNode.dataset.k]=b.dataset.v;draw()});draw()})();
+
+/* ===== quiz ===== */
+(function(){const Q=[
+ ['Which tool is the editor where you write your code?',['Visual Studio Code','GitHub','Google Chrome'],0,'VS Code is the editor. GitHub stores projects online, and Chrome only shows pages.'],
+ ['What does a commit do?',['Uploads files to GitHub','Saves a labelled snapshot in your local history','Publishes your website'],1,'A commit saves a snapshot on your laptop. Push is the step that uploads it.'],
+ ['Which command sends your commits to GitHub?',['git add','git status','git push'],2,'Push posts the sealed box to GitHub.'],
+ ['What is the difference between Git and GitHub?',['They are the same thing','Git tracks changes on your laptop, GitHub keeps an online copy','GitHub is the editor and Git is the browser'],1,'Git is the tool, GitHub is the online home.'],
+ ['What must be at the top of your repository for GitHub Pages to show your page?',['A file called index.html','A file called page.txt','A folder called website'],0,'Hosts look for index.html first.'],
+ ['You edited your page. What makes the live site change?',['Saving in VS Code is enough','Commit and push','Restarting your laptop'],1,'Saving only changes your laptop. Commit and push start the update.']];
+  const el=$('quiz');let score=0,done=0;
+  el.innerHTML=Q.map((q,i)=>`<div class="q" data-i="${i}"><b>${i+1}. ${q[0]}</b>${q[1].map((o,k)=>`<button type="button" data-k="${k}">${o}</button>`).join('')}<div class="fb"></div></div>`).join('');
+  el.addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;const box=b.closest('.q');if(box.dataset.done)return;
+    const i=Number(box.dataset.i),k=Number(b.dataset.k),ok=k===Q[i][2];box.dataset.done=1;done++;if(ok)score++;
+    box.querySelectorAll('button').forEach((x,j)=>{if(j===Q[i][2])x.classList.add('ok');else if(x===b)x.classList.add('no')});
+    box.querySelector('.fb').textContent=(ok?'Correct. ':'Not quite. ')+Q[i][3];
+    $('qscore').textContent=`Score: ${score} of ${Q.length}`+(done===Q.length?(score===Q.length?' — you are ready to deploy!':' — review the ones you missed.'):'')})})();
+
+
+/* ===== UNDER THE HOOD ===== */
+const TL={
+ vsc:['VS Code','Where you write and edit your code.','You type → text files saved on your disk','Your laptop','Built with web technology itself. Extensions run separately so a faulty one cannot freeze the editor.','CAD software in the drawing office.'],
+ term:['Git Bash','A window where you type commands to run programs.','A typed command → the program runs → text comes back','Your laptop','Bash is a shell: a program that reads your line, finds the matching program and starts it. PATH is the list of places it searches.','The instrument console where you give exact commands.'],
+ git:['Git','Remembers every version of your project.','Your files → numbered snapshots in a hidden .git folder','Your laptop','Each commit points to the one before it. Branches are labels stuck on commits.','Drawing revision control: Rev A, B, C with notes.'],
+ gh:['GitHub','Keeps an online copy of your Git project and tells other services when it changes.','Pushed snapshots → an online copy, plus notifications (webhooks)','Online','It adds sign-in checks, sharing and teamwork features (issues, pull requests) around Git.','The shared project drive with a doorbell.'],
+ vercel:['Vercel','Builds your project and serves it from servers around the world.','A GitHub repository → a live https link','Online (hosting)','Static files go to a CDN. Backend code runs in short on-demand functions.','The handover team that delivers copies to many sites at once.'],
+ render:['Render','Runs your server program continuously and gives it a public link.','A GitHub repository + build and start commands → a running program','Online (hosting)','It builds, starts, health-checks and restarts your program. Secrets are stored in its dashboard.','A rented workshop that stays powered on for your machine.'],
+ dns:['DNS','Turns a website name into a number address.','my-site.vercel.app → 76.76.21.21 (an example address)','The internet','A chain of directories: your computer, then your network’s resolver, then the owners of the name.','A directory that gives the room number for a name.'],
+ brw:['Browser','Turns files into the page you see.','HTML, CSS and JavaScript → pixels on your screen','The visitor’s device','It reads the HTML into a tree, applies CSS, lays things out, paints, then runs JavaScript when you interact.','The display instrument that shows the result.']};
+(function(){const box=$('tmap');
+  function show(k){box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===k));const v=TL[k];
+    $('tinfo').innerHTML=`<h3>${v[0]}</h3><p><b>Role:</b> ${v[1]}</p><p><b>Input → output:</b> ${v[2]}</p><p><b>Runs on:</b> ${v[3]}</p><p><b>Inside:</b> ${v[4]}</p><span class="eng">${v[5]}</span>`}
+  box.addEventListener('click',e=>{const b=e.target.closest('button[data-t]');if(b)show(b.dataset.t)});show('vsc')})();
+
+stepper('brw-st',[['f','Files arrive','HTML, CSS, JavaScript'],['dom','Reading','HTML becomes a tree of parts'],['sty','Styling','CSS rules attach to each part'],['lay','Layout','Sizes and positions worked out'],['pnt','Painting','Pixels drawn on screen']],[
+ {on:['f'],t:'Files',m:'The server’s reply arrives: usually the HTML first.',s:'The browser starts working before every file has finished arriving.'},
+ {on:['dom'],t:'Reading',m:'The HTML is read into a tree of parts.',s:'A heading and two paragraphs become branches of one tree, like a family tree for the page.'},
+ {on:['sty'],t:'Styling',m:'CSS rules attach to every part of the tree.',s:'“All headings teal” becomes a decision for each heading.'},
+ {on:['lay'],t:'Layout',m:'The browser works out each part’s size and position.',s:'It adapts to your phone or laptop screen. This is why pages can be responsive.'},
+ {on:['pnt'],t:'Painting',m:'Pixels are drawn on your screen.',s:'You see the page.'},
+ {on:['dom','pnt'],t:'JavaScript',m:'When you click, JavaScript changes the tree and the browser repaints.',s:'That is how the “Click me” counter updates without reloading.'}]);
+stepper('gh-st',[['me','Your laptop','git push'],['gh','GitHub','Stores the repository'],['hook','Webhook','A small automatic message'],['host','Vercel or Render','Starts a deployment']],[
+ {on:['me','gh'],t:'Laptop → GitHub',m:'You push. GitHub checks that it is really you.',s:'A browser sign-in or an SSH key proves your identity.'},
+ {on:['gh'],t:'GitHub',m:'Your snapshots are added to the online copy.',s:'Everything you pushed earlier is still there.'},
+ {on:['gh','hook'],t:'GitHub → Webhook',m:'GitHub sends “new commit on main”.',s:'It does this for every service you have connected to the repository.'},
+ {on:['hook','host'],t:'Webhook → Host',m:'The host receives the message and starts work.',s:'Nobody pressed a deploy button. A push is the button.'}]);
+(function(){const seg=$('sd-seg'),box=$('sd-flow');
+  const F={s:[['Browser','Asks for the page'],['Host','Finds the ready-made files'],['Browser','Receives them and draws the page']],
+           d:[['Browser','Asks for “my meal plan”'],['Server program','Runs your code'],['Database','Looks up this user’s data'],['Server program','Builds the answer'],['Browser','Shows the personal page']]};
+  function draw(v){seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));
+    box.innerHTML='<div class="flow">'+F[v].map((n,k)=>`<div class="node on"><b>${k+1}. ${n[0]}</b>${n[1]}</div>${k<F[v].length-1?'<div class="arr">→</div>':''}`).join('')+'</div>'}
+  seg.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(b)draw(b.dataset.v)});draw('s')})();
+stepper('vc-st',[['gh','GitHub','Your repository'],['vb','Vercel builds','Gets your project ready'],['cdn','Worldwide servers','The CDN holds the files'],['vis','Visitor','Opens the link']],[
+ {on:['gh','vb'],t:'GitHub → Vercel',m:'A push arrives and Vercel copies your repository.',s:'Vercel was given permission to watch this repository when you imported it.'},
+ {on:['vb'],t:'Build',m:'Vercel detects the project type and runs the build if there is one.',s:'A plain HTML page has nothing to build, so this is instant.'},
+ {on:['vb','cdn'],t:'Publish',m:'The final files are copied to servers around the world.',s:'Every location now holds an identical copy.'},
+ {on:['cdn','vis'],t:'Visit',m:'The visitor is served from the nearest copy.',s:'That is why pages load fast from far away. Your link ends in .vercel.app.'}]);
+stepper('rd-st',[['gh','GitHub','Your repository'],['bld','Render builds','Runs your build command'],['run','Your program','Runs the start command and keeps going'],['vis','Visitors','Send requests']],[
+ {on:['gh','bld'],t:'GitHub → Render',m:'A push arrives and Render copies your repository.',s:'Auto-deploy is switched on, so nothing else is needed.'},
+ {on:['bld'],t:'Build',m:'Render runs your build command.',s:'For a Node.js server this usually installs the packages the project needs.'},
+ {on:['run'],t:'Start',m:'Render runs your start command and keeps the program alive.',s:'Unlike a static page, your code is now running all the time, waiting.'},
+ {on:['run'],t:'Health check',m:'Render keeps asking “are you alive?”',s:'No answer means Render restarts the program.'},
+ {on:['run','vis'],t:'Requests',m:'Visitors’ requests reach your program at name.onrender.com.',s:'On the free plan, after 15 idle minutes it sleeps, and the next visitor wakes it.'}]);
+stepper('env-st',[['lap','Your laptop','A .env file holds the secrets'],['ign','.gitignore','A list of files Git must skip'],['gh','GitHub','Code only, no secrets'],['dash','Host dashboard','Secrets typed in once'],['app','Running app','Reads them by name']],[
+ {on:['lap'],t:'Laptop',m:'Secrets live in a file called .env that stays on your laptop.',s:'Examples: the database address, a password for a service, an API key.'},
+ {on:['lap','ign'],t:'.gitignore',m:'You list .env in .gitignore.',s:'Git then refuses to save or upload it.'},
+ {on:['ign','gh'],t:'GitHub',m:'GitHub receives your code, without the secrets.',s:'If the repository is public, anyone can read it. They find no secrets.'},
+ {on:['dash'],t:'Dashboard',m:'You type the secrets into the host’s dashboard (its Environment settings).',s:'You do this once per secret, on Vercel or on Render.'},
+ {on:['dash','app'],t:'Start',m:'The host starts your program and hands it the values.',s:'Your code reads them by name, for example process.env.DATABASE_URL in Node.js.'}]);
+stepper('life-st',[['vsc','VS Code','You write'],['git','Git','Snapshots'],['gh','GitHub','Online copy'],['host','Vercel or Render','Builds and serves'],['dns','DNS','Name to address'],['brw','Visitor’s browser','Draws the page']],[
+ {on:['vsc'],t:'1 Edit',m:'You change index.html and press Ctrl + S.',s:'A text file on your disk now has new words in it.'},
+ {on:['vsc','git'],t:'2 Commit',m:'git add and git commit store a new snapshot with your note.',s:'It lands in the hidden .git folder on your laptop.'},
+ {on:['git','gh'],t:'3 Push',m:'git push copies the snapshot to GitHub.',s:'GitHub checks your identity, then stores it.'},
+ {on:['gh','host'],t:'4 Webhook',m:'GitHub tells the host: “new commit on main”.',s:'The doorbell rings.'},
+ {on:['host'],t:'5 Build',m:'The host copies your repository and runs any build.',s:'Vercel detects settings. Render runs your build command.'},
+ {on:['host'],t:'6 Publish',m:'Vercel copies files to servers worldwide. Render starts your program.',s:'This whole part usually takes seconds to a minute or two.'},
+ {on:['brw','dns'],t:'7 Visitor',m:'Someone types your link. DNS gives the host’s address.',s:'Names become numbers.'},
+ {on:['brw','host'],t:'8 Request',m:'Their browser asks the host for the page, over HTTPS.',s:'The padlock means the conversation is scrambled and the host is who it says.'},
+ {on:['host','brw'],t:'9 Reply',m:'The host sends files (Vercel) or the result of running your code (Render).',s:'Static files come back as they are. A server program builds the answer first.'},
+ {on:['brw'],t:'10 Draw',m:'The browser builds the tree, applies CSS, lays out and paints.',s:'Your change is on a stranger’s screen.'}]);
+
+(function(){const el=$('chain');let C,B,H,nb;
+  const hex=()=>Math.random().toString(16).slice(2,6);
+  function reset(){C=[{p:-1,lane:0,id:hex()}];B={main:{tip:0,lane:0}};H='main';nb=0}
+  function draw(){
+    const lanes=Math.max(...Object.values(B).map(b=>b.lane))+1,W=C.length*70+90,Ht=lanes*64+40;
+    let g=`<svg viewBox="0 0 ${W} ${Ht}" width="${W}" height="${Ht}" role="img" aria-label="Commit graph">`;
+    C.forEach((c,i)=>{if(c.p>=0){const p=C[c.p];g+=`<line x1="${c.p*70+36}" y1="${p.lane*64+48}" x2="${i*70+36}" y2="${c.lane*64+48}" style="stroke:var(--brand);stroke-width:3"/>`}});
+    C.forEach((c,i)=>{g+=`<circle cx="${i*70+36}" cy="${c.lane*64+48}" r="11" style="fill:var(--brand)"/><text x="${i*70+36}" y="${c.lane*64+76}" text-anchor="middle" style="fill:var(--muted);font:11px 'Cascadia Mono',Consolas,monospace">${c.id}</text>`});
+    const stack={};Object.keys(B).forEach(n=>{const t=B[n].tip;stack[t]=(stack[t]||0);const y=C[t].lane*64+30-stack[t]*16;stack[t]++;
+      g+=`<text x="${t*70+36}" y="${y}" text-anchor="middle" style="fill:var(--ink);font:700 12px 'Instrument Sans',sans-serif">${n===H?'HEAD → ':''}${n}</text>`});
+    g+='</svg>';
+    el.innerHTML=g+`<div class="seg"><button type="button" class="act p" data-a="commit">Make a commit</button><button type="button" class="act" data-a="branch" ${Object.keys(B).length>=3?'disabled':''}>Create a branch</button>${Object.keys(B).map(n=>`<button type="button" class="act" data-sw="${n}" aria-pressed="${n===H}">Switch to ${n}</button>`).join('')}<button type="button" class="act" data-a="reset">Reset</button></div><p class="say">You are on <b>${H}</b>. A new commit moves only this label forward. The other labels stay where they are.</p>`;
+  }
+  el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.sw){H=b.dataset.sw}
+    else if(b.dataset.a==='commit'){if(C.length<9){C.push({p:B[H].tip,lane:B[H].lane,id:hex()});B[H].tip=C.length-1}}
+    else if(b.dataset.a==='branch'){nb++;const n='feature'+(nb>1?nb:'');B[n]={tip:B[H].tip,lane:Math.max(...Object.values(B).map(x=>x.lane))+1};H=n}
+    else if(b.dataset.a==='reset'){reset()}
+    draw()});
+  reset();draw()})();
+
+
+/* ===== deeper: tool map extras ===== */
+TL.react=['React','Builds interactive screens from reusable pieces called components.','Components + data → the screen in the browser','The visitor’s browser (files served by a host)','A build tool packs your many files into a few plain ones. React then builds the interface after the page loads.','A kit of standard parts assembled into different panels.'];
+TL.backend=['Backend','Applies rules, checks who is asking, and talks to the database.','A request → checks → rules → a reply (usually JSON)','A host such as Render','Layers: routes receive, checks protect, the service decides, the repository fetches data.','The control system between the operator panel and the plant.'];
+TL.db=['Database','Stores data in linked tables so it survives and can be searched.','Questions in SQL → rows of data','A host such as Neon','Tables point at each other through IDs called keys. Indexes make searches fast.','The plant’s records room, indexed and cross-referenced.'];
+
+/* ===== React demo ===== */
+(function(){
+  const M=[{id:1,n:'Githeri',c:60},{id:2,n:'Sukuma wiki',c:30},{id:3,n:'Brown ugali',c:40}];
+  const ch=new Set();let sel='app';
+  const D={
+   app:['App','The top component. It holds the others and sets the layout.','function App() {\n  return (\n    <>\n      <Header />\n      <MealList />\n    </>\n  );\n}'],
+   header:['Header','Shows the title and the totals. It reads from state, so it updates when you choose a meal.','function Header({ count, total }) {\n  return <h3>Chosen: {count} · KSh {total}</h3>;\n}'],
+   list:['MealList','Repeats a MealCard for every meal in the data.','function MealList({ meals }) {\n  return meals.map(m => <MealCard key={m.id} {...m} />);\n}'],
+   card:['MealCard','One reusable card. Name and cost arrive as props, which are inputs from the parent.','function MealCard({ name, cost, chosen, onToggle }) {\n  return (\n    <div>\n      {name} · KSh {cost}\n      <button onClick={onToggle}>\n        {chosen ? "Remove" : "Choose"}\n      </button>\n    </div>\n  );\n}']};
+  const T=[['app','App','l0'],['header','Header','l1'],['list','MealList','l1'],['card','MealCard (×3)','l2']];
+  function draw(){
+    $('rtree').innerHTML=T.map(t=>`<button type="button" class="${t[2]}" data-c="${t[0]}" aria-pressed="${t[0]===sel}">&lt;${t[1]} /&gt;</button>`).join('');
+    const total=[...ch].reduce((a,id)=>a+M.find(m=>m.id===id).c,0);
+    $('rmock').innerHTML=`<div class="mb ${sel==='app'||sel==='header'?'hi':''}"><b>Meal picker</b> · Chosen: ${ch.size} · KSh ${total}</div><div class="mb ${sel==='app'||sel==='list'?'hi':''}">${M.map(m=>`<div class="mc ${sel==='card'?'hi':''}"><span>${m.n} · KSh ${m.c}</span><button type="button" data-m="${m.id}" class="${ch.has(m.id)?'p':''}">${ch.has(m.id)?'Remove':'Choose'}</button></div>`).join('')}</div>`;
+    const d=D[sel];$('rinfo').innerHTML=`<h3>&lt;${d[0]} /&gt;</h3><p>${d[1]}</p><div class="code">${esc(d[2])}</div>`}
+  $('rtree').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b){sel=b.dataset.c;draw()}});
+  $('rmock').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(!b)return;const id=Number(b.dataset.m);ch.has(id)?ch.delete(id):ch.add(id);draw()});
+  draw()})();
+
+stepper('rb-st',[['src','Your source','JSX, many small files'],['bld','Build','npm run build (Vite)'],['dist','dist folder','Plain HTML, CSS, JS'],['host','Host','Vercel, Pages, Netlify'],['brw','Browser','Opens it']],[
+ {on:['src'],t:'Source',m:'You write React in .jsx files that import each other.',s:'JSX looks like HTML inside JavaScript. Browsers cannot read it directly.'},
+ {on:['src','bld'],t:'Build',m:'npm run build translates the JSX into plain JavaScript.',s:'Vercel runs this command for you on every push. You can also run it on your laptop.'},
+ {on:['bld'],t:'Bundle',m:'Hundreds of files are packed into a few, and shrunk.',s:'Fewer, smaller files load faster over mobile data.'},
+ {on:['dist'],t:'Output',m:'The result is a dist folder: index.html plus an assets folder.',s:'Only this folder is deployed. Your original source stays on GitHub.'},
+ {on:['dist','host'],t:'Deploy',m:'The host stores dist and serves it from its worldwide servers.',s:'On Vercel, set the framework to Vite and the output folder to dist if they are not detected.'},
+ {on:['host','brw'],t:'Visit',m:'A browser downloads them like any other website.',s:'Nothing special is needed on the host. It just serves files.'}]);
+stepper('rs-st',[['srv','Host','Sends the files'],['brw','Browser','Downloads and runs'],['rea','React','Builds the screen'],['api','Backend API','Sends data as JSON']],[
+ {on:['srv','brw'],t:'Shell',m:'The browser asks for the page and receives index.html: almost empty.',s:'It contains only a div with the id root and a script tag.'},
+ {on:['brw'],t:'Download',m:'The browser sees the script tag and downloads the JavaScript bundle.',s:'The CSS file is fetched the same way.'},
+ {on:['rea'],t:'Render',m:'React starts and builds the whole interface inside the root div.',s:'This happens in your browser, not on the server. It is called client-side rendering.'},
+ {on:['rea','api'],t:'Data',m:'React asks the backend for data with fetch, then fills in the screen.',s:'The backend replies with JSON: plain text made of names and values.'},
+ {on:['rea'],t:'Navigate',m:'Click a link and React swaps the components shown. The address bar changes.',s:'No new page is downloaded, which is why the app feels fast.'},
+ {on:['rea'],t:'Update',m:'Click Choose and the state changes. React redraws only what changed.',s:'It compares the old and new screen and touches only the difference.'}]);
+stepper('bk-st',[['spa','React app','Sends the request'],['rt','Route','Receives it'],['mw','Checks','Login and input'],['sv','Service','The rules'],['rp','Repository','Talks to the database'],['db','Database','Stores the data']],[
+ {on:['spa','rt'],t:'Request',m:'POST /api/plans/generate, with the login token and a budget.',s:'POST means “create something new”. The address says which feature.'},
+ {on:['rt','mw'],t:'Checks',m:'Is the token valid? Is the budget a sensible number?',s:'If not, the backend stops here with 401 or 400. Nothing deeper runs.'},
+ {on:['sv'],t:'Rules',m:'The service applies the rules: filter dishes, score choices, pick the best.',s:'This is the part that is special to your app.'},
+ {on:['rp','db'],t:'Data',m:'The repository asks the database for the dishes.',s:'Only this layer writes database questions. The rest of the code never touches the database directly.'},
+ {on:['db','rp','sv'],t:'Rows',m:'The database returns rows, and the service uses them.',s:'If the database is down, the backend replies with a 500 error.'},
+ {on:['rt','spa'],t:'Reply',m:'The route sends back 200 and the plan as JSON.',s:'React then draws it on screen.'}]);
+stepper('fs-st',[['brw','Browser','Runs the React app'],['vc','Vercel','Serves the React files'],['api','Render','Runs the backend'],['db','Neon','Holds the database']],[
+ {on:['brw','vc'],t:'Open',m:'You open the site. Vercel sends the React files.',s:'Static files from the nearest server, as in Section 6.'},
+ {on:['brw'],t:'Run',m:'React starts in your browser and shows the login screen.',s:'Nothing has touched the backend or the database yet.'},
+ {on:['brw','api'],t:'Request',m:'You press Generate plan. React sends a request to the backend’s own address.',s:'If the free backend was asleep, the first request can take up to a minute.'},
+ {on:['api'],t:'CORS',m:'The backend checks that the request comes from an allowed website.',s:'It keeps a list of permitted sites and refuses the rest.'},
+ {on:['api','db'],t:'Query',m:'It checks your login, applies the rules, and asks the database.',s:'The database address is a secret kept in Render’s settings, never in the code.'},
+ {on:['db','api'],t:'Rows',m:'The database returns the rows.',s:'Neon wakes up if it was paused.'},
+ {on:['api','brw'],t:'Reply',m:'The backend sends JSON, and React updates the screen.',s:'Three services cooperated in about a second.'}]);
+stepper('dns-st',[['dev','Your device','Browser and Windows memory'],['res','Resolver','Your network’s lookup helper'],['root','Root servers','Know who runs each ending'],['tld','.app servers','Know who runs each name'],['auth','The name’s own DNS','Holds the real record']],[
+ {on:['dev'],t:'Memory',m:'First, check memory. Your browser and Windows keep recent answers.',s:'If the name is there, the lookup ends instantly.'},
+ {on:['dev','res'],t:'Ask',m:'Not remembered, so ask the resolver.',s:'A resolver is a helper run by your network provider or a public one. It does the legwork.'},
+ {on:['res','root'],t:'Root',m:'“Who handles .app?” A root server replies with the .app servers.',s:'Root servers do not know your site. They only point the way.'},
+ {on:['res','tld'],t:'Ending',m:'“Who handles vercel.app?” The .app servers reply with its own DNS servers.',s:'Each step narrows the search.'},
+ {on:['res','auth'],t:'Answer',m:'“What is the address of my-first-page.vercel.app?” The record comes back.',s:'This is the only server that holds the real answer.'},
+ {on:['res','dev'],t:'Return',m:'The resolver remembers it for the TTL and passes it on. Your browser connects.',s:'The next person asking the same resolver gets the answer immediately.'}]);
+
+/* ===== database lab ===== */
+(function(){
+  const TB={
+   users:{c:[['id','PK'],['name','']],r:[[1,'Njeri'],[2,'Josephine']]},
+   dishes:{c:[['id','PK'],['name',''],['cost_ksh',''],['carbs_g','']],r:[[1,'Githeri',60,45],[2,'Sukuma wiki',30,6],[3,'Brown ugali',40,50]]},
+   meal_plans:{c:[['id','PK'],['user_id','FK → users'],['plan_date','']],r:[[10,1,'2026-11-12'],[11,2,'2026-11-12']]},
+   meal_plan_items:{c:[['id','PK'],['plan_id','FK → meal_plans'],['dish_id','FK → dishes'],['slot','']],r:[[100,10,1,'morning'],[101,10,2,'evening'],[102,11,2,'morning']]}};
+  const Q=[
+   ['List every user','SELECT id, name FROM users;',['users'],['id','name'],[[1,'Njeri'],[2,'Josephine']],'Ask for chosen columns of every row.'],
+   ['Which plans belong to user 1?','SELECT * FROM meal_plans\nWHERE user_id = 1;',['meal_plans'],['id','user_id','plan_date'],[[10,1,'2026-11-12']],'WHERE filters rows. The foreign key user_id links each plan to its owner.'],
+   ['What is in plan 10, with dish names?','SELECT i.slot, d.name\nFROM meal_plan_items i\nJOIN dishes d ON d.id = i.dish_id\nWHERE i.plan_id = 10;',['meal_plan_items','dishes'],['slot','name'],[['morning','Githeri'],['evening','Sukuma wiki']],'JOIN glues two tables together using the matching ID, so the plan item can show the dish’s name.'],
+   ['What does plan 10 cost in total?','SELECT SUM(d.cost_ksh)\nFROM meal_plan_items i\nJOIN dishes d ON d.id = i.dish_id\nWHERE i.plan_id = 10;',['meal_plan_items','dishes'],['sum'],[[90]],'SUM adds up a column: 60 + 30.']];
+  let q=0;const el=$('db-lab');
+  const tbl=(k,used)=>{const t=TB[k];return `<div class="dbt ${used?'used':''}"><h4>${k}</h4><table><thead><tr>${t.c.map(c=>`<th>${c[0]}${c[1]?`<small>${c[1]}</small>`:''}</th>`).join('')}</tr></thead><tbody>${t.r.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`};
+  function draw(){const v=Q[q];
+    el.innerHTML=`<div class="seg">${Q.map((x,i)=>`<button type="button" data-q="${i}" aria-pressed="${i===q}">${x[0]}</button>`).join('')}</div><div class="two">${Object.keys(TB).map(k=>tbl(k,v[2].includes(k))).join('')}</div><div class="code">${esc(v[1])}</div><div class="dbt used"><h4>Answer</h4><table><thead><tr>${v[3].map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${v[4].map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div><span class="say" style="margin-top:8px">${v[5]}</span>`}
+  el.addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){q=Number(b.dataset.q);draw()}});draw()})();
+
+/* ===== DNS lab ===== */
+(function(){
+  const N=[['www.mysite.com','sub','www'],['mysite.com','apex','@'],['app.mysite.com','sub','app']];
+  const H={vercel:['Vercel','the value your Vercel project shows','Project → Settings → Domains'],render:['Render','YOUR-SERVICE.onrender.com','Service → Settings → Custom Domains'],pages:['GitHub Pages','YOUR-USERNAME.github.io','Repository → Settings → Pages → Custom domain']};
+  let n=0,h='vercel';const el=$('dns-lab');
+  function draw(){const [nm,kind,label]=N[n],host=H[h];
+    const rec=kind==='apex'?['A',label,'the IP address(es) your host shows you','A CNAME is not allowed at the very root of a domain. Some DNS providers offer ALIAS or ANAME for this.']:['CNAME',label,host[1],'A CNAME makes the subdomain an alias for the host’s own address.'];
+    el.innerHTML=`<p><b>Name to connect</b></p><div class="seg" data-g="n">${N.map((x,i)=>`<button type="button" data-n="${i}" aria-pressed="${i===n}">${x[0]}</button>`).join('')}</div><p><b>Host</b></p><div class="seg" data-g="h">${Object.keys(H).map(k=>`<button type="button" data-h="${k}" aria-pressed="${k===h}">${H[k][0]}</button>`).join('')}</div><div class="tw"><table><thead><tr><th>Type</th><th>Name</th><th>Value</th></tr></thead><tbody><tr><td>${rec[0]}</td><td><code>${rec[1]}</code></td><td>${rec[2]}</td></tr></tbody></table></div><p class="say">${rec[3]} Find the exact values in ${host[0]}: <b>${host[2]}</b> (labels may differ). Then add the record where you bought the domain.</p>`}
+  el.addEventListener('click',e=>{const a=e.target.closest('[data-n]'),b=e.target.closest('[data-h]');if(a)n=Number(a.dataset.n);if(b)h=b.dataset.h;if(a||b)draw()});draw()})();
+term('t-dns','Command Prompt','C:\\> ',[['m','Check what the world sees (sample output):'],['c','nslookup www.mysite.com'],['o','Non-authoritative answer:'],['o','Name:     host.example.net'],['o','Address:  203.0.113.7'],['o','Aliases:  www.mysite.com'],['m','Your computer remembering an old answer? Clear it:'],['c','ipconfig /flushdns'],['o','Successfully flushed the DNS Resolver Cache.']]);
+
+/* ===== navigation ===== */
+const slides=[...document.querySelectorAll('.slide')],nav=document.querySelector('nav');
+const names=[...new Set(slides.map(s=>s.dataset.sec))];
+names.forEach(n=>{const a=document.createElement('a');a.href='#'+slides.find(s=>s.dataset.sec===n).id;a.textContent=n;a.dataset.n=n;nav.appendChild(a)});
+nav.insertAdjacentHTML('beforeend','<small>Arrow keys change slide</small>');
+const links=[...nav.querySelectorAll('a')];
+slides.forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.dataset.n===s.dataset.sec))}),{threshold:.5}).observe(s));
+const cur=()=>{const m=innerHeight/2;return Math.max(0,slides.findIndex(s=>{const r=s.getBoundingClientRect();return r.top<=m&&r.bottom>m}))};
+addEventListener('scroll',()=>{$('barfill').style.width=(100*(cur()+1)/slides.length)+'%'},{passive:true});
+addEventListener('keydown',e=>{
+  if(['TEXTAREA','INPUT','SELECT'].includes(document.activeElement&&document.activeElement.tagName))return;
+  if(!['ArrowDown','ArrowRight','PageDown','ArrowUp','ArrowLeft','PageUp'].includes(e.key))return;
+  e.preventDefault();const d=/Down|Right/.test(e.key)?1:-1;slides[Math.max(0,Math.min(slides.length-1,cur()+d))].scrollIntoView()});
+</script>
+</body>
+</html>
